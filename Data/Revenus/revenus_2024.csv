@@ -1,0 +1,819 @@
+COD_VAR,LIB_VAR,COD_MOD,LIB_MOD,TYPE_VAR,LONG_VAR,annee
+PMIMP,Part des ménages imposés (%),,,NUM,8,2024
+DECUC_Q2,Médiane du revenu déclaré (€),,,NUM,8,2024
+DECUC_Q1,1er quartile du revenu déclaré (€),,,NUM,8,2024
+DECUC_Q3,3ème quartile du revenu déclaré (€),,,NUM,8,2024
+BREV,Taux de bas revenus déclarés au seuil de 60% du revenu déclaré (%),,,NUM,8,2024
+DECUC_D1,Premier décile du revenu déclaré (€),,,NUM,8,2024
+DECUC_D9,Neuvième décile du revenu déclaré (€),,,NUM,8,2024
+DECUC_D1D9,Rapport interdécile (D9/D1) du revenu déclaré,,,NUM,8,2024
+DISP_Q2,Médiane du revenu disponible (€),,,NUM,8,2024
+DISP_Q1,1er quartile du revenu disponible (€),,,NUM,8,2024
+DISP_Q3,3ème quartile du revenu disponible (€),,,NUM,8,2024
+TP60,Taux de pauvreté au seuil de 60% du revenu disponible,,,NUM,8,2024
+DISP_D1,Premier décile du revenu disponible (€),,,NUM,8,2024
+DISP_D9,Neuvième décile du revenu disponible (€),,,NUM,8,2024
+DISP_D1D9,Rapport interdécile (D9/D1) du revenu disponible,,,NUM,8,2024
+PACT,Part des revenus d'activités (%),,,NUM,8,2024
+PPEN,"Part des pensions, retraites et rentes (%)",,,NUM,8,2024
+PPSOC,Part de l'ensemble des prestations sociales (%),,,NUM,8,2024
+PIMPOT,Part des impôts (%),,,NUM,8,2024
+PPAT,Part des revenus du patrimoine (%),,,NUM,8,2024
+C,Population couverte bénéficiaire du régime général,,,NUM,8,2024
+C_C2SNP,Population couverte bénéficiaire de la C2S non participative (ex-CMUC),,,NUM,8,2024
+C_C2SP,Population couverte bénéficiaire de la C2S participative (ex-ACS),,,NUM,8,2024
+A,Nombre total d'allocataires,,,NUM,8,2024
+APPA,Allocataires percevant la prime d'activité,,,NUM,8,2024
+ARSAS,Allocataires percevant le Revenu de Solidarité Active socle,,,NUM,8,2024
+AAAH,Allocataires percevant l’Allocation Adulte Handicapé,,,NUM,8,2024
+NOTE_FILO,Note de diffusion Filosofi,0,Aucun problème particulier,CHAR,1,2024
+NOTE_FILO,Note de diffusion Filosofi,1,"Fortes évolutions, précaution d’interprétation",CHAR,1,2024
+NOTE_FILO,Note de diffusion Filosofi,2,Non diffusé : fusion de communes,CHAR,1,2024
+NOTE_FILO,Note de diffusion Filosofi,5,Non diffusé : anomalies repérées lors des contrôles de cohérence,CHAR,1,2024
+NOTE_CNAM,Note de diffusion Cnam,0,Aucun problème particulier,NUM,1,2024
+NOTE_CNAM,Note de diffusion Cnam,2,Non diffusé : fusion de communes,NUM,1,2024
+NOTE_CNAM,Note de diffusion Cnam,3,Non diffusé : seuil de diffusion,NUM,1,2024
+NOTE_CNAM,Note de diffusion Cnam,4,Non diffusé : mauvaise qualité de géoréférencement,NUM,1,2024
+NOTE_CNAM,Note de diffusion Cnam,5,Non diffusé : anomalies repérées lors des contrôles de cohérence,NUM,1,2024
+NOTE_CNAF,Note de diffusion Cnaf,0,Aucun problème particulier,NUM,1,2024
+NOTE_CNAF,Note de diffusion Cnaf,2,Non diffusé : fusion de communes,NUM,1,2024
+NOTE_CNAF,Note de diffusion Cnaf,3,Non diffusé : seuil de diffusion,NUM,1,2024
+NOTE_CNAF,Note de diffusion Cnaf,4,Non diffusé : mauvaise qualité de géoréférencement,NUM,1,2024
+NOTE_CNAF,Note de diffusion Cnaf,5,Non diffusé : anomalies repérées lors des contrôles de cohérence,NUM,1,2024
+CODGEO,Code de la commune,01004,Ambérieu-en-Bugey,CHAR,30,2024
+CODGEO,Code de la commune,01031,Bellignat,CHAR,30,2024
+CODGEO,Code de la commune,01034,Belley,CHAR,30,2024
+CODGEO,Code de la commune,01053,Bourg-en-Bresse,CHAR,30,2024
+CODGEO,Code de la commune,01160,Ferney-Voltaire,CHAR,30,2024
+CODGEO,Code de la commune,01262,Montluel,CHAR,30,2024
+CODGEO,Code de la commune,01283,Oyonnax,CHAR,30,2024
+CODGEO,Code de la commune,01354,Saint-Genis-Pouilly,CHAR,30,2024
+CODGEO,Code de la commune,02168,Château-Thierry,CHAR,30,2024
+CODGEO,Code de la commune,02173,Chauny,CHAR,30,2024
+CODGEO,Code de la commune,02304,La Fère,CHAR,30,2024
+CODGEO,Code de la commune,02381,Hirson,CHAR,30,2024
+CODGEO,Code de la commune,02408,Laon,CHAR,30,2024
+CODGEO,Code de la commune,02691,Saint-Quentin,CHAR,30,2024
+CODGEO,Code de la commune,02722,Soissons,CHAR,30,2024
+CODGEO,Code de la commune,02738,Tergnier,CHAR,30,2024
+CODGEO,Code de la commune,02810,Villers-Cotterêts,CHAR,30,2024
+CODGEO,Code de la commune,0309503310,"Cusset, Vichy",CHAR,30,2024
+CODGEO,Code de la commune,0310103185,"Domérat, Montluçon",CHAR,30,2024
+CODGEO,Code de la commune,03185,Montluçon,CHAR,30,2024
+CODGEO,Code de la commune,0318503211,"Montluçon, Prémilhat",CHAR,30,2024
+CODGEO,Code de la commune,03190,Moulins,CHAR,30,2024
+CODGEO,Code de la commune,03310,Vichy,CHAR,30,2024
+CODGEO,Code de la commune,04070,Digne-les-Bains,CHAR,30,2024
+CODGEO,Code de la commune,04112,Manosque,CHAR,30,2024
+CODGEO,Code de la commune,05061,Gap,CHAR,30,2024
+CODGEO,Code de la commune,0602906030,"Cannes, Le Cannet",CHAR,30,2024
+CODGEO,Code de la commune,06033,Carros,CHAR,30,2024
+CODGEO,Code de la commune,06054,Drap,CHAR,30,2024
+CODGEO,Code de la commune,06069,Grasse,CHAR,30,2024
+CODGEO,Code de la commune,06088,Nice,CHAR,30,2024
+CODGEO,Code de la commune,0608806114,"Nice, Saint-André-de-la-Roche",CHAR,30,2024
+CODGEO,Code de la commune,0608806123,"Nice, Saint-Laurent-du-Var",CHAR,30,2024
+CODGEO,Code de la commune,06155,Vallauris,CHAR,30,2024
+CODGEO,Code de la commune,06157,Vence,CHAR,30,2024
+CODGEO,Code de la commune,07010,Annonay,CHAR,30,2024
+CODGEO,Code de la commune,07019,Aubenas,CHAR,30,2024
+CODGEO,Code de la commune,07186,Privas,CHAR,30,2024
+CODGEO,Code de la commune,07319,Le Teil,CHAR,30,2024
+CODGEO,Code de la commune,08105,Charleville-Mézières,CHAR,30,2024
+CODGEO,Code de la commune,08362,Rethel,CHAR,30,2024
+CODGEO,Code de la commune,08409,Sedan,CHAR,30,2024
+CODGEO,Code de la commune,09122,Foix,CHAR,30,2024
+CODGEO,Code de la commune,09225,Pamiers,CHAR,30,2024
+CODGEO,Code de la commune,09261,Saint-Girons,CHAR,30,2024
+CODGEO,Code de la commune,100811026510387,"La Chapelle-Saint-Luc, Les Noës-près-Troyes, Troyes",CHAR,30,2024
+CODGEO,Code de la commune,10297,Pont-Sainte-Marie,CHAR,30,2024
+CODGEO,Code de la commune,10323,Romilly-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,10333,Saint-André-les-Vergers,CHAR,30,2024
+CODGEO,Code de la commune,10387,Troyes,CHAR,30,2024
+CODGEO,Code de la commune,11069,Carcassonne,CHAR,30,2024
+CODGEO,Code de la commune,11203,Lézignan-Corbières,CHAR,30,2024
+CODGEO,Code de la commune,11206,Limoux,CHAR,30,2024
+CODGEO,Code de la commune,11262,Narbonne,CHAR,30,2024
+CODGEO,Code de la commune,12176,Onet-le-Château,CHAR,30,2024
+CODGEO,Code de la commune,12300,Villefranche-de-Rouergue,CHAR,30,2024
+CODGEO,Code de la commune,13001,Aix-en-Provence,CHAR,30,2024
+CODGEO,Code de la commune,13004,Arles,CHAR,30,2024
+CODGEO,Code de la commune,13005,Aubagne,CHAR,30,2024
+CODGEO,Code de la commune,13014,Berre-l'Étang,CHAR,30,2024
+CODGEO,Code de la commune,13027,Châteaurenard,CHAR,30,2024
+CODGEO,Code de la commune,13041,Gardanne,CHAR,30,2024
+CODGEO,Code de la commune,13047,Istres,CHAR,30,2024
+CODGEO,Code de la commune,13054,Marignane,CHAR,30,2024
+CODGEO,Code de la commune,13055,Marseille,CHAR,30,2024
+CODGEO,Code de la commune,1305513070,"Marseille, La Penne-sur-Huveaune",CHAR,30,2024
+CODGEO,Code de la commune,13056,Martigues,CHAR,30,2024
+CODGEO,Code de la commune,13063,Miramas,CHAR,30,2024
+CODGEO,Code de la commune,13067,Orgon,CHAR,30,2024
+CODGEO,Code de la commune,13077,Port-de-Bouc,CHAR,30,2024
+CODGEO,Code de la commune,13103,Salon-de-Provence,CHAR,30,2024
+CODGEO,Code de la commune,13106,Septèmes-les-Vallons,CHAR,30,2024
+CODGEO,Code de la commune,13108,Tarascon,CHAR,30,2024
+CODGEO,Code de la commune,13117,Vitrolles,CHAR,30,2024
+CODGEO,Code de la commune,14118,Caen,CHAR,30,2024
+CODGEO,Code de la commune,1411814271,"Caen, Fleury-sur-Orne",CHAR,30,2024
+CODGEO,Code de la commune,1411814341,"Caen, Ifs",CHAR,30,2024
+CODGEO,Code de la commune,14167,Colombelles,CHAR,30,2024
+CODGEO,Code de la commune,14327,Hérouville-Saint-Clair,CHAR,30,2024
+CODGEO,Code de la commune,14333,Honfleur,CHAR,30,2024
+CODGEO,Code de la commune,14366,Lisieux,CHAR,30,2024
+CODGEO,Code de la commune,15014,Aurillac,CHAR,30,2024
+CODGEO,Code de la commune,16015,Angoulême,CHAR,30,2024
+CODGEO,Code de la commune,16102,Cognac,CHAR,30,2024
+CODGEO,Code de la commune,16113,La Couronne,CHAR,30,2024
+CODGEO,Code de la commune,16374,Soyaux,CHAR,30,2024
+CODGEO,Code de la commune,17299,Rochefort,CHAR,30,2024
+CODGEO,Code de la commune,17300,La Rochelle,CHAR,30,2024
+CODGEO,Code de la commune,17306,Royan,CHAR,30,2024
+CODGEO,Code de la commune,17415,Saintes,CHAR,30,2024
+CODGEO,Code de la commune,18033,Bourges,CHAR,30,2024
+CODGEO,Code de la commune,18197,Saint-Amand-Montrond,CHAR,30,2024
+CODGEO,Code de la commune,18279,Vierzon,CHAR,30,2024
+CODGEO,Code de la commune,19031,Brive-la-Gaillarde,CHAR,30,2024
+CODGEO,Code de la commune,21054,Beaune,CHAR,30,2024
+CODGEO,Code de la commune,21166,Chenôve,CHAR,30,2024
+CODGEO,Code de la commune,21231,Dijon,CHAR,30,2024
+CODGEO,Code de la commune,21355,Longvic,CHAR,30,2024
+CODGEO,Code de la commune,21617,Talant,CHAR,30,2024
+CODGEO,Code de la commune,22050,Dinan,CHAR,30,2024
+CODGEO,Code de la commune,22113,Lannion,CHAR,30,2024
+CODGEO,Code de la commune,22215,Ploufragan,CHAR,30,2024
+CODGEO,Code de la commune,22278,Saint-Brieuc,CHAR,30,2024
+CODGEO,Code de la commune,23096,Guéret,CHAR,30,2024
+CODGEO,Code de la commune,24037,Bergerac,CHAR,30,2024
+CODGEO,Code de la commune,24138,Coulounieix-Chamiers,CHAR,30,2024
+CODGEO,Code de la commune,2413824322,"Coulounieix-Chamiers, Périgueux",CHAR,30,2024
+CODGEO,Code de la commune,25031,Audincourt,CHAR,30,2024
+CODGEO,Code de la commune,25056,Besançon,CHAR,30,2024
+CODGEO,Code de la commune,25057,Bethoncourt,CHAR,30,2024
+CODGEO,Code de la commune,25284,Grand-Charmont,CHAR,30,2024
+CODGEO,Code de la commune,25388,Montbéliard,CHAR,30,2024
+CODGEO,Code de la commune,25462,Pontarlier,CHAR,30,2024
+CODGEO,Code de la commune,25547,Sochaux,CHAR,30,2024
+CODGEO,Code de la commune,25580,Valentigney,CHAR,30,2024
+CODGEO,Code de la commune,26166,Loriol-sur-Drôme,CHAR,30,2024
+CODGEO,Code de la commune,26198,Montélimar,CHAR,30,2024
+CODGEO,Code de la commune,26235,Pierrelatte,CHAR,30,2024
+CODGEO,Code de la commune,26281,Romans-sur-Isère,CHAR,30,2024
+CODGEO,Code de la commune,26325,Saint-Rambert-d'Albon,CHAR,30,2024
+CODGEO,Code de la commune,26362,Valence,CHAR,30,2024
+CODGEO,Code de la commune,27056,Bernay,CHAR,30,2024
+CODGEO,Code de la commune,27229,Évreux,CHAR,30,2024
+CODGEO,Code de la commune,27375,Louviers,CHAR,30,2024
+CODGEO,Code de la commune,27467,Pont-Audemer,CHAR,30,2024
+CODGEO,Code de la commune,27681,Vernon,CHAR,30,2024
+CODGEO,Code de la commune,27701,Val-de-Reuil,CHAR,30,2024
+CODGEO,Code de la commune,28085,Chartres,CHAR,30,2024
+CODGEO,Code de la commune,28088,Châteaudun,CHAR,30,2024
+CODGEO,Code de la commune,28134,Dreux,CHAR,30,2024
+CODGEO,Code de la commune,2813428404,"Dreux, Vernouillet",CHAR,30,2024
+CODGEO,Code de la commune,28218,Lucé,CHAR,30,2024
+CODGEO,Code de la commune,28229,Mainvilliers,CHAR,30,2024
+CODGEO,Code de la commune,28280,Nogent-le-Rotrou,CHAR,30,2024
+CODGEO,Code de la commune,28404,Vernouillet,CHAR,30,2024
+CODGEO,Code de la commune,29019,Brest,CHAR,30,2024
+CODGEO,Code de la commune,29039,Concarneau,CHAR,30,2024
+CODGEO,Code de la commune,29232,Quimper,CHAR,30,2024
+CODGEO,Code de la commune,2A004,Ajaccio,CHAR,30,2024
+CODGEO,Code de la commune,2A247,Porto-Vecchio,CHAR,30,2024
+CODGEO,Code de la commune,2B033,Bastia,CHAR,30,2024
+CODGEO,Code de la commune,30007,Alès,CHAR,30,2024
+CODGEO,Code de la commune,30010,Anduze,CHAR,30,2024
+CODGEO,Code de la commune,30028,Bagnols-sur-Cèze,CHAR,30,2024
+CODGEO,Code de la commune,30032,Beaucaire,CHAR,30,2024
+CODGEO,Code de la commune,30132,La Grand-Combe,CHAR,30,2024
+CODGEO,Code de la commune,30189,Nîmes,CHAR,30,2024
+CODGEO,Code de la commune,30202,Pont-Saint-Esprit,CHAR,30,2024
+CODGEO,Code de la commune,30227,Saint-Ambroix,CHAR,30,2024
+CODGEO,Code de la commune,30258,Saint-Gilles,CHAR,30,2024
+CODGEO,Code de la commune,30334,Uzès,CHAR,30,2024
+CODGEO,Code de la commune,30341,Vauvert,CHAR,30,2024
+CODGEO,Code de la commune,31069,Blagnac,CHAR,30,2024
+CODGEO,Code de la commune,31149,Colomiers,CHAR,30,2024
+CODGEO,Code de la commune,31157,Cugnaux,CHAR,30,2024
+CODGEO,Code de la commune,31395,Muret,CHAR,30,2024
+CODGEO,Code de la commune,31483,Saint-Gaudens,CHAR,30,2024
+CODGEO,Code de la commune,31555,Toulouse,CHAR,30,2024
+CODGEO,Code de la commune,32013,Auch,CHAR,30,2024
+CODGEO,Code de la commune,33032,Bassens,CHAR,30,2024
+CODGEO,Code de la commune,33039,Bègles,CHAR,30,2024
+CODGEO,Code de la commune,3303933063,"Bègles, Bordeaux",CHAR,30,2024
+CODGEO,Code de la commune,33063,Bordeaux,CHAR,30,2024
+CODGEO,Code de la commune,3306333119,"Bordeaux, Cenon",CHAR,30,2024
+CODGEO,Code de la commune,3306933162,"Le Bouscat, Eysines",CHAR,30,2024
+CODGEO,Code de la commune,3311933167,"Cenon, Floirac",CHAR,30,2024
+CODGEO,Code de la commune,33138,Coutras,CHAR,30,2024
+CODGEO,Code de la commune,33162,Eysines,CHAR,30,2024
+CODGEO,Code de la commune,33167,Floirac,CHAR,30,2024
+CODGEO,Code de la commune,33192,Gradignan,CHAR,30,2024
+CODGEO,Code de la commune,33249,Lormont,CHAR,30,2024
+CODGEO,Code de la commune,33281,Mérignac,CHAR,30,2024
+CODGEO,Code de la commune,33318,Pessac,CHAR,30,2024
+CODGEO,Code de la commune,3332433402,"Pineuilh, Sainte-Foy-la-Grande",CHAR,30,2024
+CODGEO,Code de la commune,33522,Talence,CHAR,30,2024
+CODGEO,Code de la commune,34003,Agde,CHAR,30,2024
+CODGEO,Code de la commune,34028,Bédarieux,CHAR,30,2024
+CODGEO,Code de la commune,34032,Béziers,CHAR,30,2024
+CODGEO,Code de la commune,34108,Frontignan,CHAR,30,2024
+CODGEO,Code de la commune,34142,Lodève,CHAR,30,2024
+CODGEO,Code de la commune,34145,Lunel,CHAR,30,2024
+CODGEO,Code de la commune,34172,Montpellier,CHAR,30,2024
+CODGEO,Code de la commune,34301,Sète,CHAR,30,2024
+CODGEO,Code de la commune,35236,Redon,CHAR,30,2024
+CODGEO,Code de la commune,35238,Rennes,CHAR,30,2024
+CODGEO,Code de la commune,35288,Saint-Malo,CHAR,30,2024
+CODGEO,Code de la commune,36044,Châteauroux,CHAR,30,2024
+CODGEO,Code de la commune,36088,Issoudun,CHAR,30,2024
+CODGEO,Code de la commune,37003,Amboise,CHAR,30,2024
+CODGEO,Code de la commune,37122,Joué-lès-Tours,CHAR,30,2024
+CODGEO,Code de la commune,37195,La Riche,CHAR,30,2024
+CODGEO,Code de la commune,37233,Saint-Pierre-des-Corps,CHAR,30,2024
+CODGEO,Code de la commune,37261,Tours,CHAR,30,2024
+CODGEO,Code de la commune,38053,Bourgoin-Jallieu,CHAR,30,2024
+CODGEO,Code de la commune,38087,Chasse-sur-Rhône,CHAR,30,2024
+CODGEO,Code de la commune,38097,Chavanoz,CHAR,30,2024
+CODGEO,Code de la commune,38151,Échirolles,CHAR,30,2024
+CODGEO,Code de la commune,38169,Fontaine,CHAR,30,2024
+CODGEO,Code de la commune,38185,Grenoble,CHAR,30,2024
+CODGEO,Code de la commune,38193,L'Isle-d'Abeau,CHAR,30,2024
+CODGEO,Code de la commune,38298,Le Péage-de-Roussillon,CHAR,30,2024
+CODGEO,Code de la commune,3829838344,"Le Péage-de-Roussillon, Roussillon",CHAR,30,2024
+CODGEO,Code de la commune,38317,Le Pont-de-Claix,CHAR,30,2024
+CODGEO,Code de la commune,38318,Pont-Évêque,CHAR,30,2024
+CODGEO,Code de la commune,3831838544,"Pont-Évêque, Vienne",CHAR,30,2024
+CODGEO,Code de la commune,38416,Saint-Marcellin,CHAR,30,2024
+CODGEO,Code de la commune,38421,Saint-Martin-d'Hères,CHAR,30,2024
+CODGEO,Code de la commune,38544,Vienne,CHAR,30,2024
+CODGEO,Code de la commune,38553,Villefontaine,CHAR,30,2024
+CODGEO,Code de la commune,38563,Voiron,CHAR,30,2024
+CODGEO,Code de la commune,39198,Dole,CHAR,30,2024
+CODGEO,Code de la commune,39300,Lons-le-Saunier,CHAR,30,2024
+CODGEO,Code de la commune,39478,Saint-Claude,CHAR,30,2024
+CODGEO,Code de la commune,40088,Dax,CHAR,30,2024
+CODGEO,Code de la commune,40192,Mont-de-Marsan,CHAR,30,2024
+CODGEO,Code de la commune,40281,Saint-Pierre-du-Mont,CHAR,30,2024
+CODGEO,Code de la commune,41018,Blois,CHAR,30,2024
+CODGEO,Code de la commune,41194,Romorantin-Lanthenay,CHAR,30,2024
+CODGEO,Code de la commune,41269,Vendôme,CHAR,30,2024
+CODGEO,Code de la commune,42005,Andrézieux-Bouthéon,CHAR,30,2024
+CODGEO,Code de la commune,42044,Le Chambon-Feugerolles,CHAR,30,2024
+CODGEO,Code de la commune,4204442183,"Le Chambon-Feugerolles, La Ricamarie",CHAR,30,2024
+CODGEO,Code de la commune,4210342271,"La Grand-Croix, Saint-Paul-en-Jarez",CHAR,30,2024
+CODGEO,Code de la commune,42147,Montbrison,CHAR,30,2024
+CODGEO,Code de la commune,42183,La Ricamarie,CHAR,30,2024
+CODGEO,Code de la commune,42186,Rive-de-Gier,CHAR,30,2024
+CODGEO,Code de la commune,42187,Roanne,CHAR,30,2024
+CODGEO,Code de la commune,42207,Saint-Chamond,CHAR,30,2024
+CODGEO,Code de la commune,42218,Saint-Étienne,CHAR,30,2024
+CODGEO,Code de la commune,43157,Le Puy-en-Velay,CHAR,30,2024
+CODGEO,Code de la commune,44036,Châteaubriant,CHAR,30,2024
+CODGEO,Code de la commune,44109,Nantes,CHAR,30,2024
+CODGEO,Code de la commune,4410944162,"Nantes, Saint-Herblain",CHAR,30,2024
+CODGEO,Code de la commune,44114,Orvault,CHAR,30,2024
+CODGEO,Code de la commune,44143,Rezé,CHAR,30,2024
+CODGEO,Code de la commune,44162,Saint-Herblain,CHAR,30,2024
+CODGEO,Code de la commune,44184,Saint-Nazaire,CHAR,30,2024
+CODGEO,Code de la commune,45068,Châlette-sur-Loing,CHAR,30,2024
+CODGEO,Code de la commune,4506845208,"Châlette-sur-Loing, Montargis",CHAR,30,2024
+CODGEO,Code de la commune,450684520845338,"Châlette-sur-Loing, Montargis, Villemandeur",CHAR,30,2024
+CODGEO,Code de la commune,45147,Fleury-les-Aubrais,CHAR,30,2024
+CODGEO,Code de la commune,45155,Gien,CHAR,30,2024
+CODGEO,Code de la commune,45208,Montargis,CHAR,30,2024
+CODGEO,Code de la commune,45234,Orléans,CHAR,30,2024
+CODGEO,Code de la commune,45252,Pithiviers,CHAR,30,2024
+CODGEO,Code de la commune,45284,Saint-Jean-de-Braye,CHAR,30,2024
+CODGEO,Code de la commune,45285,Saint-Jean-de-la-Ruelle,CHAR,30,2024
+CODGEO,Code de la commune,45315,Sully-sur-Loire,CHAR,30,2024
+CODGEO,Code de la commune,46042,Cahors,CHAR,30,2024
+CODGEO,Code de la commune,47001,Agen,CHAR,30,2024
+CODGEO,Code de la commune,47157,Marmande,CHAR,30,2024
+CODGEO,Code de la commune,47252,Sainte-Livrade-sur-Lot,CHAR,30,2024
+CODGEO,Code de la commune,47310,Tonneins,CHAR,30,2024
+CODGEO,Code de la commune,47323,Villeneuve-sur-Lot,CHAR,30,2024
+CODGEO,Code de la commune,49007,Angers,CHAR,30,2024
+CODGEO,Code de la commune,49099,Cholet,CHAR,30,2024
+CODGEO,Code de la commune,49328,Saumur,CHAR,30,2024
+CODGEO,Code de la commune,49353,Trélazé,CHAR,30,2024
+CODGEO,Code de la commune,50025,Avranches,CHAR,30,2024
+CODGEO,Code de la commune,50129,Cherbourg-en-Cotentin,CHAR,30,2024
+CODGEO,Code de la commune,50147,Coutances,CHAR,30,2024
+CODGEO,Code de la commune,50502,Saint-Lô,CHAR,30,2024
+CODGEO,Code de la commune,51108,Châlons-en-Champagne,CHAR,30,2024
+CODGEO,Code de la commune,51230,Épernay,CHAR,30,2024
+CODGEO,Code de la commune,51454,Reims,CHAR,30,2024
+CODGEO,Code de la commune,51649,Vitry-le-François,CHAR,30,2024
+CODGEO,Code de la commune,52121,Chaumont,CHAR,30,2024
+CODGEO,Code de la commune,52269,Langres,CHAR,30,2024
+CODGEO,Code de la commune,52448,Saint-Dizier,CHAR,30,2024
+CODGEO,Code de la commune,53130,Laval,CHAR,30,2024
+CODGEO,Code de la commune,54115,Champigneulles,CHAR,30,2024
+CODGEO,Code de la commune,54184,Essey-lès-Nancy,CHAR,30,2024
+CODGEO,Code de la commune,54215,Frouard,CHAR,30,2024
+CODGEO,Code de la commune,54261,Herserange,CHAR,30,2024
+CODGEO,Code de la commune,54274,Jarville-la-Malgrange,CHAR,30,2024
+CODGEO,Code de la commune,54304,Laxou,CHAR,30,2024
+CODGEO,Code de la commune,5430454357,"Laxou, Maxéville",CHAR,30,2024
+CODGEO,Code de la commune,54323,Longwy,CHAR,30,2024
+CODGEO,Code de la commune,54329,Lunéville,CHAR,30,2024
+CODGEO,Code de la commune,543395439554482,"Malzéville, Nancy, Saint-Max",CHAR,30,2024
+CODGEO,Code de la commune,5435754395,"Maxéville, Nancy",CHAR,30,2024
+CODGEO,Code de la commune,54382,Mont-Saint-Martin,CHAR,30,2024
+CODGEO,Code de la commune,5439554547,"Nancy, Vandœuvre-lès-Nancy",CHAR,30,2024
+CODGEO,Code de la commune,54431,Pont-à-Mousson,CHAR,30,2024
+CODGEO,Code de la commune,54526,Tomblaine,CHAR,30,2024
+CODGEO,Code de la commune,54528,Toul,CHAR,30,2024
+CODGEO,Code de la commune,55029,Bar-le-Duc,CHAR,30,2024
+CODGEO,Code de la commune,55545,Verdun,CHAR,30,2024
+CODGEO,Code de la commune,56007,Auray,CHAR,30,2024
+CODGEO,Code de la commune,56083,Hennebont,CHAR,30,2024
+CODGEO,Code de la commune,56098,Lanester,CHAR,30,2024
+CODGEO,Code de la commune,56121,Lorient,CHAR,30,2024
+CODGEO,Code de la commune,56260,Vannes,CHAR,30,2024
+CODGEO,Code de la commune,57058,Behren-lès-Forbach,CHAR,30,2024
+CODGEO,Code de la commune,57160,Creutzwald,CHAR,30,2024
+CODGEO,Code de la commune,57206,Fameck,CHAR,30,2024
+CODGEO,Code de la commune,5722457690,"Folschviller, Valmont",CHAR,30,2024
+CODGEO,Code de la commune,57227,Forbach,CHAR,30,2024
+CODGEO,Code de la commune,5724057332,"Freyming-Merlebach, Hombourg-Haut",CHAR,30,2024
+CODGEO,Code de la commune,57269,Guénange,CHAR,30,2024
+CODGEO,Code de la commune,57332,Hombourg-Haut,CHAR,30,2024
+CODGEO,Code de la commune,57463,Metz,CHAR,30,2024
+CODGEO,Code de la commune,5746357751,"Metz, Woippy",CHAR,30,2024
+CODGEO,Code de la commune,57606,Saint-Avold,CHAR,30,2024
+CODGEO,Code de la commune,57630,Sarrebourg,CHAR,30,2024
+CODGEO,Code de la commune,57631,Sarreguemines,CHAR,30,2024
+CODGEO,Code de la commune,57672,Thionville,CHAR,30,2024
+CODGEO,Code de la commune,57683,Uckange,CHAR,30,2024
+CODGEO,Code de la commune,57757,Yutz,CHAR,30,2024
+CODGEO,Code de la commune,58086,Cosne-Cours-sur-Loire,CHAR,30,2024
+CODGEO,Code de la commune,58194,Nevers,CHAR,30,2024
+CODGEO,Code de la commune,5900859024,"Aniche, Auberchicourt",CHAR,30,2024
+CODGEO,Code de la commune,59009,Villeneuve-d'Ascq,CHAR,30,2024
+CODGEO,Code de la commune,590095935059410,"Villeneuve-d'Ascq, Lille, Mons-en-Barœul",CHAR,30,2024
+CODGEO,Code de la commune,59014,Anzin,CHAR,30,2024
+CODGEO,Code de la commune,5901459079591125949159606,"Anzin, Beuvrages, Bruay-sur-l'Escaut, Raismes, Valenciennes",CHAR,30,2024
+CODGEO,Code de la commune,59017,Armentières,CHAR,30,2024
+CODGEO,Code de la commune,590245918559390,"Auberchicourt, Écaillon, Masny",CHAR,30,2024
+CODGEO,Code de la commune,59028,Auby,CHAR,30,2024
+CODGEO,Code de la commune,5902859509,"Auby, Roost-Warendin",CHAR,30,2024
+CODGEO,Code de la commune,590645949159632,"Bellaing, Raismes, Wallers",CHAR,30,2024
+CODGEO,Code de la commune,5911259207,"Bruay-sur-l'Escaut, Escautpont",CHAR,30,2024
+CODGEO,Code de la commune,591125920759491,"Bruay-sur-l'Escaut, Escautpont, Raismes",CHAR,30,2024
+CODGEO,Code de la commune,59122,Cambrai,CHAR,30,2024
+CODGEO,Code de la commune,59139,Caudry,CHAR,30,2024
+CODGEO,Code de la commune,59153,Condé-sur-l'Escaut,CHAR,30,2024
+CODGEO,Code de la commune,59155,Coudekerque-Branche,CHAR,30,2024
+CODGEO,Code de la commune,59163595125959959650,"Croix, Roubaix, Tourcoing, Wattrelos",CHAR,30,2024
+CODGEO,Code de la commune,5916559178,"Cuincy, Douai",CHAR,30,2024
+CODGEO,Code de la commune,591725917959361,"Denain, Douchy-les-Mines, Lourches",CHAR,30,2024
+CODGEO,Code de la commune,591725920559361,"Denain, Escaudain, Lourches",CHAR,30,2024
+CODGEO,Code de la commune,59178,Douai,CHAR,30,2024
+CODGEO,Code de la commune,5917859234,"Douai, Flers-en-Escrebieux",CHAR,30,2024
+CODGEO,Code de la commune,591785956959654,"Douai, Sin-le-Noble, Waziers",CHAR,30,2024
+CODGEO,Code de la commune,5917859654,"Douai, Waziers",CHAR,30,2024
+CODGEO,Code de la commune,59179,Douchy-les-Mines,CHAR,30,2024
+CODGEO,Code de la commune,59183,Dunkerque,CHAR,30,2024
+CODGEO,Code de la commune,59205,Escaudain,CHAR,30,2024
+CODGEO,Code de la commune,592055936159504,"Escaudain, Lourches, Rœulx",CHAR,30,2024
+CODGEO,Code de la commune,59220593465935059360,"Faches-Thumesnil, Lezennes, Lille, Loos",CHAR,30,2024
+CODGEO,Code de la commune,59225,Feignies,CHAR,30,2024
+CODGEO,Code de la commune,59230,Ferrière-la-Grande,CHAR,30,2024
+CODGEO,Code de la commune,59249,Fourmies,CHAR,30,2024
+CODGEO,Code de la commune,59253,Fresnes-sur-Escaut,CHAR,30,2024
+CODGEO,Code de la commune,59271,Grande-Synthe,CHAR,30,2024
+CODGEO,Code de la commune,59291,Hautmont,CHAR,30,2024
+CODGEO,Code de la commune,59291593655939259424,"Hautmont, Louvroil, Maubeuge, Neuf-Mesnil",CHAR,30,2024
+CODGEO,Code de la commune,59295,Hazebrouck,CHAR,30,2024
+CODGEO,Code de la commune,592995936759512,"Hem, Lys-lez-Lannoy, Roubaix",CHAR,30,2024
+CODGEO,Code de la commune,59314,Hornaing,CHAR,30,2024
+CODGEO,Code de la commune,59324,Jeumont,CHAR,30,2024
+CODGEO,Code de la commune,59328,Lambersart,CHAR,30,2024
+CODGEO,Code de la commune,59350,Lille,CHAR,30,2024
+CODGEO,Code de la commune,59360,Loos,CHAR,30,2024
+CODGEO,Code de la commune,59365,Louvroil,CHAR,30,2024
+CODGEO,Code de la commune,59378,Marcq-en-Barœul,CHAR,30,2024
+CODGEO,Code de la commune,5938359606,"Marly, Valenciennes",CHAR,30,2024
+CODGEO,Code de la commune,59390,Masny,CHAR,30,2024
+CODGEO,Code de la commune,59392,Maubeuge,CHAR,30,2024
+CODGEO,Code de la commune,59414,Montigny-en-Ostrevent,CHAR,30,2024
+CODGEO,Code de la commune,5941459456,"Montigny-en-Ostrevent, Pecquencourt",CHAR,30,2024
+CODGEO,Code de la commune,5944759613,"Onnaing, Vicq",CHAR,30,2024
+CODGEO,Code de la commune,59452,Ostricourt,CHAR,30,2024
+CODGEO,Code de la commune,5945262321,"Ostricourt, Évin-Malmaison",CHAR,30,2024
+CODGEO,Code de la commune,59456,Pecquencourt,CHAR,30,2024
+CODGEO,Code de la commune,59481,Le Quesnoy,CHAR,30,2024
+CODGEO,Code de la commune,59484,Quiévrechain,CHAR,30,2024
+CODGEO,Code de la commune,59491,Raismes,CHAR,30,2024
+CODGEO,Code de la commune,59507,Ronchin,CHAR,30,2024
+CODGEO,Code de la commune,59512,Roubaix,CHAR,30,2024
+CODGEO,Code de la commune,59526,Saint-Amand-les-Eaux,CHAR,30,2024
+CODGEO,Code de la commune,59544,Saint-Saulve,CHAR,30,2024
+CODGEO,Code de la commune,59560,Seclin,CHAR,30,2024
+CODGEO,Code de la commune,5956459606,"La Sentinelle, Valenciennes",CHAR,30,2024
+CODGEO,Code de la commune,59569,Sin-le-Noble,CHAR,30,2024
+CODGEO,Code de la commune,59574,Somain,CHAR,30,2024
+CODGEO,Code de la commune,59588,Téteghem-Coudekerque-Village,CHAR,30,2024
+CODGEO,Code de la commune,59599,Tourcoing,CHAR,30,2024
+CODGEO,Code de la commune,5959959650,"Tourcoing, Wattrelos",CHAR,30,2024
+CODGEO,Code de la commune,59616,Vieux-Condé,CHAR,30,2024
+CODGEO,Code de la commune,59648,Wattignies,CHAR,30,2024
+CODGEO,Code de la commune,59650,Wattrelos,CHAR,30,2024
+CODGEO,Code de la commune,59654,Waziers,CHAR,30,2024
+CODGEO,Code de la commune,60057,Beauvais,CHAR,30,2024
+CODGEO,Code de la commune,60157,Clermont,CHAR,30,2024
+CODGEO,Code de la commune,60159,Compiègne,CHAR,30,2024
+CODGEO,Code de la commune,60175,Creil,CHAR,30,2024
+CODGEO,Code de la commune,60176,Crépy-en-Valois,CHAR,30,2024
+CODGEO,Code de la commune,60360,Liancourt,CHAR,30,2024
+CODGEO,Code de la commune,60395,Méru,CHAR,30,2024
+CODGEO,Code de la commune,60414,Montataire,CHAR,30,2024
+CODGEO,Code de la commune,60463,Nogent-sur-Oise,CHAR,30,2024
+CODGEO,Code de la commune,60471,Noyon,CHAR,30,2024
+CODGEO,Code de la commune,60509,Pont-Sainte-Maxence,CHAR,30,2024
+CODGEO,Code de la commune,60684,Villers-Saint-Paul,CHAR,30,2024
+CODGEO,Code de la commune,61001,Alençon,CHAR,30,2024
+CODGEO,Code de la commune,61006,Argentan,CHAR,30,2024
+CODGEO,Code de la commune,61169,Flers,CHAR,30,2024
+CODGEO,Code de la commune,61214,L'Aigle,CHAR,30,2024
+CODGEO,Code de la commune,62004,Achicourt,CHAR,30,2024
+CODGEO,Code de la commune,6200462041,"Achicourt, Arras",CHAR,30,2024
+CODGEO,Code de la commune,62014,Aire-sur-la-Lys,CHAR,30,2024
+CODGEO,Code de la commune,62032,Angres,CHAR,30,2024
+CODGEO,Code de la commune,620406252562765,"Arques, Longuenesse, Saint-Omer",CHAR,30,2024
+CODGEO,Code de la commune,62041,Arras,CHAR,30,2024
+CODGEO,Code de la commune,62048,Auchel,CHAR,30,2024
+CODGEO,Code de la commune,6204862188,"Auchel, Burbure",CHAR,30,2024
+CODGEO,Code de la commune,620486219462555,"Auchel, Calonne-Ricouart, Marles-les-Mines",CHAR,30,2024
+CODGEO,Code de la commune,6204862217,"Auchel, Cauchy-à-la-Tour",CHAR,30,2024
+CODGEO,Code de la commune,62065,Avion,CHAR,30,2024
+CODGEO,Code de la commune,6206562771,"Avion, Sallaumines",CHAR,30,2024
+CODGEO,Code de la commune,6208362443,"Barlin, Hersin-Coupigny",CHAR,30,2024
+CODGEO,Code de la commune,62119,Béthune,CHAR,30,2024
+CODGEO,Code de la commune,6211962848,"Béthune, Verquin",CHAR,30,2024
+CODGEO,Code de la commune,6212662480,"Beuvry, Labourse",CHAR,30,2024
+CODGEO,Code de la commune,6213362351,"Billy-Montigny, Fouquières-lès-Lens",CHAR,30,2024
+CODGEO,Code de la commune,6213362724,"Billy-Montigny, Rouvroy",CHAR,30,2024
+CODGEO,Code de la commune,62160,Boulogne-sur-Mer,CHAR,30,2024
+CODGEO,Code de la commune,6216062667,"Boulogne-sur-Mer, Le Portel",CHAR,30,2024
+CODGEO,Code de la commune,6216062758,"Boulogne-sur-Mer, Saint-Martin-Boulogne",CHAR,30,2024
+CODGEO,Code de la commune,62178,Bruay-la-Buissière,CHAR,30,2024
+CODGEO,Code de la commune,6217862270,"Bruay-la-Buissière, Divion",CHAR,30,2024
+CODGEO,Code de la commune,6217862400,"Bruay-la-Buissière, Haillicourt",CHAR,30,2024
+CODGEO,Code de la commune,6218662563,"Bully-les-Mines, Mazingarbe",CHAR,30,2024
+CODGEO,Code de la commune,62193,Calais,CHAR,30,2024
+CODGEO,Code de la commune,6219462270,"Calonne-Ricouart, Divion",CHAR,30,2024
+CODGEO,Code de la commune,62215,Carvin,CHAR,30,2024
+CODGEO,Code de la commune,62249,Courcelles-lès-Lens,CHAR,30,2024
+CODGEO,Code de la commune,62250,Courrières,CHAR,30,2024
+CODGEO,Code de la commune,622506235162587,"Courrières, Fouquières-lès-Lens, Montigny-en-Gohelle",CHAR,30,2024
+CODGEO,Code de la commune,622766240162464,"Douvrin, Haisnes, Hulluch",CHAR,30,2024
+CODGEO,Code de la commune,6229162498,"Éleu-dit-Leauwette, Lens",CHAR,30,2024
+CODGEO,Code de la commune,62318,Étaples,CHAR,30,2024
+CODGEO,Code de la commune,6238662528,"Grenay, Loos-en-Gohelle",CHAR,30,2024
+CODGEO,Code de la commune,6240062457,"Haillicourt, Houdain",CHAR,30,2024
+CODGEO,Code de la commune,62413,Harnes,CHAR,30,2024
+CODGEO,Code de la commune,62427,Hénin-Beaumont,CHAR,30,2024
+CODGEO,Code de la commune,6242762587,"Hénin-Beaumont, Montigny-en-Gohelle",CHAR,30,2024
+CODGEO,Code de la commune,62498,Lens,CHAR,30,2024
+CODGEO,Code de la commune,624986251062528,"Lens, Liévin, Loos-en-Gohelle",CHAR,30,2024
+CODGEO,Code de la commune,624986252362842,"Lens, Loison-sous-Lens, Vendin-le-Vieil",CHAR,30,2024
+CODGEO,Code de la commune,62510,Liévin,CHAR,30,2024
+CODGEO,Code de la commune,62516,Lillers,CHAR,30,2024
+CODGEO,Code de la commune,62560,Marquise,CHAR,30,2024
+CODGEO,Code de la commune,62563,Mazingarbe,CHAR,30,2024
+CODGEO,Code de la commune,6257062724,"Méricourt, Rouvroy",CHAR,30,2024
+CODGEO,Code de la commune,6257062771,"Méricourt, Sallaumines",CHAR,30,2024
+CODGEO,Code de la commune,62617,Nœux-les-Mines,CHAR,30,2024
+CODGEO,Code de la commune,62643,Outreau,CHAR,30,2024
+CODGEO,Code de la commune,62667,Le Portel,CHAR,30,2024
+CODGEO,Code de la commune,62724,Rouvroy,CHAR,30,2024
+CODGEO,Code de la commune,62737,Sains-en-Gohelle,CHAR,30,2024
+CODGEO,Code de la commune,6275362764,"Saint-Laurent-Blangy, Saint-Nicolas",CHAR,30,2024
+CODGEO,Code de la commune,62765,Saint-Omer,CHAR,30,2024
+CODGEO,Code de la commune,62895,Wingles,CHAR,30,2024
+CODGEO,Code de la commune,62907,Libercourt,CHAR,30,2024
+CODGEO,Code de la commune,63113,Clermont-Ferrand,CHAR,30,2024
+CODGEO,Code de la commune,63124,Cournon-d'Auvergne,CHAR,30,2024
+CODGEO,Code de la commune,63430,Thiers,CHAR,30,2024
+CODGEO,Code de la commune,64102,Bayonne,CHAR,30,2024
+CODGEO,Code de la commune,64445,Pau,CHAR,30,2024
+CODGEO,Code de la commune,65286,Lourdes,CHAR,30,2024
+CODGEO,Code de la commune,6541765440,"Séméac, Tarbes",CHAR,30,2024
+CODGEO,Code de la commune,65440,Tarbes,CHAR,30,2024
+CODGEO,Code de la commune,66065,Elne,CHAR,30,2024
+CODGEO,Code de la commune,66136,Perpignan,CHAR,30,2024
+CODGEO,Code de la commune,67043,Bischheim,CHAR,30,2024
+CODGEO,Code de la commune,6704367447,"Bischheim, Schiltigheim",CHAR,30,2024
+CODGEO,Code de la commune,67046,Bischwiller,CHAR,30,2024
+CODGEO,Code de la commune,67180,Haguenau,CHAR,30,2024
+CODGEO,Code de la commune,67218,Illkirch-Graffenstaden,CHAR,30,2024
+CODGEO,Code de la commune,67267,Lingolsheim,CHAR,30,2024
+CODGEO,Code de la commune,67437,Saverne,CHAR,30,2024
+CODGEO,Code de la commune,67447,Schiltigheim,CHAR,30,2024
+CODGEO,Code de la commune,67482,Strasbourg,CHAR,30,2024
+CODGEO,Code de la commune,68063,Cernay,CHAR,30,2024
+CODGEO,Code de la commune,68066,Colmar,CHAR,30,2024
+CODGEO,Code de la commune,6815468224,"Illzach, Mulhouse",CHAR,30,2024
+CODGEO,Code de la commune,68224,Mulhouse,CHAR,30,2024
+CODGEO,Code de la commune,68297,Saint-Louis,CHAR,30,2024
+CODGEO,Code de la commune,68376,Wittenheim,CHAR,30,2024
+CODGEO,Code de la commune,69019,Belleville-en-Beaujolais,CHAR,30,2024
+CODGEO,Code de la commune,69027,Brignais,CHAR,30,2024
+CODGEO,Code de la commune,69029,Bron,CHAR,30,2024
+CODGEO,Code de la commune,6902969256,"Bron, Vaulx-en-Velin",CHAR,30,2024
+CODGEO,Code de la commune,69091,Givors,CHAR,30,2024
+CODGEO,Code de la commune,690926911569264,"Gleizé, Limas, Villefranche-sur-Saône",CHAR,30,2024
+CODGEO,Code de la commune,69096,Grigny,CHAR,30,2024
+CODGEO,Code de la commune,69123,Lyon,CHAR,30,2024
+CODGEO,Code de la commune,6912369259,"Lyon, Vénissieux",CHAR,30,2024
+CODGEO,Code de la commune,6914269149,"La Mulatière, Oullins",CHAR,30,2024
+CODGEO,Code de la commune,69143,Neuville-sur-Saône,CHAR,30,2024
+CODGEO,Code de la commune,69152,Pierre-Bénite,CHAR,30,2024
+CODGEO,Code de la commune,69199,Saint-Fons,CHAR,30,2024
+CODGEO,Code de la commune,6919969259,"Saint-Fons, Vénissieux",CHAR,30,2024
+CODGEO,Code de la commune,69204,Saint-Genis-Laval,CHAR,30,2024
+CODGEO,Code de la commune,69243,Tarare,CHAR,30,2024
+CODGEO,Code de la commune,69256,Vaulx-en-Velin,CHAR,30,2024
+CODGEO,Code de la commune,69259,Vénissieux,CHAR,30,2024
+CODGEO,Code de la commune,69264,Villefranche-sur-Saône,CHAR,30,2024
+CODGEO,Code de la commune,69266,Villeurbanne,CHAR,30,2024
+CODGEO,Code de la commune,69275,Décines-Charpieu,CHAR,30,2024
+CODGEO,Code de la commune,69282,Meyzieu,CHAR,30,2024
+CODGEO,Code de la commune,69286,Rillieux-la-Pape,CHAR,30,2024
+CODGEO,Code de la commune,69290,Saint-Priest,CHAR,30,2024
+CODGEO,Code de la commune,70279,Gray,CHAR,30,2024
+CODGEO,Code de la commune,70285,Héricourt,CHAR,30,2024
+CODGEO,Code de la commune,70310,Lure,CHAR,30,2024
+CODGEO,Code de la commune,70311,Luxeuil-les-Bains,CHAR,30,2024
+CODGEO,Code de la commune,70550,Vesoul,CHAR,30,2024
+CODGEO,Code de la commune,71014,Autun,CHAR,30,2024
+CODGEO,Code de la commune,71076,Chalon-sur-Saône,CHAR,30,2024
+CODGEO,Code de la commune,71153,Le Creusot,CHAR,30,2024
+CODGEO,Code de la commune,71270,Mâcon,CHAR,30,2024
+CODGEO,Code de la commune,71306,Montceau-les-Mines,CHAR,30,2024
+CODGEO,Code de la commune,71540,Torcy,CHAR,30,2024
+CODGEO,Code de la commune,72003,Allonnes,CHAR,30,2024
+CODGEO,Code de la commune,7209572181,"Coulaines, Le Mans",CHAR,30,2024
+CODGEO,Code de la commune,72181,Le Mans,CHAR,30,2024
+CODGEO,Code de la commune,72264,Sablé-sur-Sarthe,CHAR,30,2024
+CODGEO,Code de la commune,73008,Aix-les-Bains,CHAR,30,2024
+CODGEO,Code de la commune,73011,Albertville,CHAR,30,2024
+CODGEO,Code de la commune,73065,Chambéry,CHAR,30,2024
+CODGEO,Code de la commune,74012,Annemasse,CHAR,30,2024
+CODGEO,Code de la commune,74042,Bonneville,CHAR,30,2024
+CODGEO,Code de la commune,74081,Cluses,CHAR,30,2024
+CODGEO,Code de la commune,74133,Gaillard,CHAR,30,2024
+CODGEO,Code de la commune,74243,Saint-Julien-en-Genevois,CHAR,30,2024
+CODGEO,Code de la commune,74281,Thonon-les-Bains,CHAR,30,2024
+CODGEO,Code de la commune,75056,Paris,CHAR,30,2024
+CODGEO,Code de la commune,76057,Barentin,CHAR,30,2024
+CODGEO,Code de la commune,7609576540,"Bihorel, Rouen",CHAR,30,2024
+CODGEO,Code de la commune,76157,Canteleu,CHAR,30,2024
+CODGEO,Code de la commune,7617876561,"Cléon, Saint-Aubin-lès-Elbeuf",CHAR,30,2024
+CODGEO,Code de la commune,76212,Darnétal,CHAR,30,2024
+CODGEO,Code de la commune,76217,Dieppe,CHAR,30,2024
+CODGEO,Code de la commune,76231,Elbeuf,CHAR,30,2024
+CODGEO,Code de la commune,76259,Fécamp,CHAR,30,2024
+CODGEO,Code de la commune,76305,Gonfreville-l'Orcher,CHAR,30,2024
+CODGEO,Code de la commune,76319,Grand-Couronne,CHAR,30,2024
+CODGEO,Code de la commune,76351,Le Havre,CHAR,30,2024
+CODGEO,Code de la commune,76410,Maromme,CHAR,30,2024
+CODGEO,Code de la commune,76474,Notre-Dame-de-Bondeville,CHAR,30,2024
+CODGEO,Code de la commune,76484,Oissel,CHAR,30,2024
+CODGEO,Code de la commune,76498,Le Petit-Quevilly,CHAR,30,2024
+CODGEO,Code de la commune,76540,Rouen,CHAR,30,2024
+CODGEO,Code de la commune,76575,Saint-Étienne-du-Rouvray,CHAR,30,2024
+CODGEO,Code de la commune,7657576681,"Saint-Étienne-du-Rouvray, Sotteville-lès-Rouen",CHAR,30,2024
+CODGEO,Code de la commune,77014,Avon,CHAR,30,2024
+CODGEO,Code de la commune,7708377337,"Champs-sur-Marne, Noisiel",CHAR,30,2024
+CODGEO,Code de la commune,77108,Chelles,CHAR,30,2024
+CODGEO,Code de la commune,77131,Coulommiers,CHAR,30,2024
+CODGEO,Code de la commune,77152,Dammarie-les-Lys,CHAR,30,2024
+CODGEO,Code de la commune,77183,La Ferté-sous-Jouarre,CHAR,30,2024
+CODGEO,Code de la commune,77243,Lagny-sur-Marne,CHAR,30,2024
+CODGEO,Code de la commune,77284,Meaux,CHAR,30,2024
+CODGEO,Code de la commune,77285,Le Mée-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,7728577288,"Le Mée-sur-Seine, Melun",CHAR,30,2024
+CODGEO,Code de la commune,77288,Melun,CHAR,30,2024
+CODGEO,Code de la commune,77296,Moissy-Cramayel,CHAR,30,2024
+CODGEO,Code de la commune,77305,Montereau-Fault-Yonne,CHAR,30,2024
+CODGEO,Code de la commune,77333,Nemours,CHAR,30,2024
+CODGEO,Code de la commune,77350,Ozoir-la-Ferrière,CHAR,30,2024
+CODGEO,Code de la commune,77379,Provins,CHAR,30,2024
+CODGEO,Code de la commune,77390,Roissy-en-Brie,CHAR,30,2024
+CODGEO,Code de la commune,77445,Savigny-le-Temple,CHAR,30,2024
+CODGEO,Code de la commune,77468,Torcy,CHAR,30,2024
+CODGEO,Code de la commune,77514,Villeparisis,CHAR,30,2024
+CODGEO,Code de la commune,78123,Carrières-sous-Poissy,CHAR,30,2024
+CODGEO,Code de la commune,78124,Carrières-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,78138,Chanteloup-les-Vignes,CHAR,30,2024
+CODGEO,Code de la commune,78208,Élancourt,CHAR,30,2024
+CODGEO,Code de la commune,78297,Guyancourt,CHAR,30,2024
+CODGEO,Code de la commune,78335,Limay,CHAR,30,2024
+CODGEO,Code de la commune,78361,Mantes-la-Jolie,CHAR,30,2024
+CODGEO,Code de la commune,78362,Mantes-la-Ville,CHAR,30,2024
+CODGEO,Code de la commune,78383,Maurepas,CHAR,30,2024
+CODGEO,Code de la commune,78440,Les Mureaux,CHAR,30,2024
+CODGEO,Code de la commune,78490,Plaisir,CHAR,30,2024
+CODGEO,Code de la commune,78498,Poissy,CHAR,30,2024
+CODGEO,Code de la commune,78586,Sartrouville,CHAR,30,2024
+CODGEO,Code de la commune,78621,Trappes,CHAR,30,2024
+CODGEO,Code de la commune,78643,Vernouillet,CHAR,30,2024
+CODGEO,Code de la commune,78644,La Verrière,CHAR,30,2024
+CODGEO,Code de la commune,79049,Bressuire,CHAR,30,2024
+CODGEO,Code de la commune,79191,Niort,CHAR,30,2024
+CODGEO,Code de la commune,79329,Thouars,CHAR,30,2024
+CODGEO,Code de la commune,80001,Abbeville,CHAR,30,2024
+CODGEO,Code de la commune,80021,Amiens,CHAR,30,2024
+CODGEO,Code de la commune,81004,Albi,CHAR,30,2024
+CODGEO,Code de la commune,81021,Aussillon,CHAR,30,2024
+CODGEO,Code de la commune,81060,Carmaux,CHAR,30,2024
+CODGEO,Code de la commune,81065,Castres,CHAR,30,2024
+CODGEO,Code de la commune,81099,Gaillac,CHAR,30,2024
+CODGEO,Code de la commune,81105,Graulhet,CHAR,30,2024
+CODGEO,Code de la commune,82112,Moissac,CHAR,30,2024
+CODGEO,Code de la commune,82121,Montauban,CHAR,30,2024
+CODGEO,Code de la commune,83023,Brignoles,CHAR,30,2024
+CODGEO,Code de la commune,83050,Draguignan,CHAR,30,2024
+CODGEO,Code de la commune,83061,Fréjus,CHAR,30,2024
+CODGEO,Code de la commune,83062,La Garde,CHAR,30,2024
+CODGEO,Code de la commune,83069,Hyères,CHAR,30,2024
+CODGEO,Code de la commune,83073,Le Luc,CHAR,30,2024
+CODGEO,Code de la commune,83086,Le Muy,CHAR,30,2024
+CODGEO,Code de la commune,83126,La Seyne-sur-Mer,CHAR,30,2024
+CODGEO,Code de la commune,83137,Toulon,CHAR,30,2024
+CODGEO,Code de la commune,84003,Apt,CHAR,30,2024
+CODGEO,Code de la commune,84007,Avignon,CHAR,30,2024
+CODGEO,Code de la commune,84019,Bollène,CHAR,30,2024
+CODGEO,Code de la commune,84031,Carpentras,CHAR,30,2024
+CODGEO,Code de la commune,84035,Cavaillon,CHAR,30,2024
+CODGEO,Code de la commune,84054,L'Isle-sur-la-Sorgue,CHAR,30,2024
+CODGEO,Code de la commune,84080,Monteux,CHAR,30,2024
+CODGEO,Code de la commune,84087,Orange,CHAR,30,2024
+CODGEO,Code de la commune,84089,Pertuis,CHAR,30,2024
+CODGEO,Code de la commune,84092,Le Pontet,CHAR,30,2024
+CODGEO,Code de la commune,84129,Sorgues,CHAR,30,2024
+CODGEO,Code de la commune,84138,Valréas,CHAR,30,2024
+CODGEO,Code de la commune,85092,Fontenay-le-Comte,CHAR,30,2024
+CODGEO,Code de la commune,85191,La Roche-sur-Yon,CHAR,30,2024
+CODGEO,Code de la commune,8604186194,"Buxerolles, Poitiers",CHAR,30,2024
+CODGEO,Code de la commune,86066,Châtellerault,CHAR,30,2024
+CODGEO,Code de la commune,86194,Poitiers,CHAR,30,2024
+CODGEO,Code de la commune,8619486214,"Poitiers, Saint-Benoît",CHAR,30,2024
+CODGEO,Code de la commune,87085,Limoges,CHAR,30,2024
+CODGEO,Code de la commune,88160,Épinal,CHAR,30,2024
+CODGEO,Code de la commune,88209,Golbey,CHAR,30,2024
+CODGEO,Code de la commune,88383,Remiremont,CHAR,30,2024
+CODGEO,Code de la commune,88413,Saint-Dié-des-Vosges,CHAR,30,2024
+CODGEO,Code de la commune,89024,Auxerre,CHAR,30,2024
+CODGEO,Code de la commune,89206,Joigny,CHAR,30,2024
+CODGEO,Code de la commune,89257,Migennes,CHAR,30,2024
+CODGEO,Code de la commune,89387,Sens,CHAR,30,2024
+CODGEO,Code de la commune,9000890010,"Bavilliers, Belfort",CHAR,30,2024
+CODGEO,Code de la commune,90010,Belfort,CHAR,30,2024
+CODGEO,Code de la commune,9007590099,"Offemont, Valdoie",CHAR,30,2024
+CODGEO,Code de la commune,91021,Arpajon,CHAR,30,2024
+CODGEO,Code de la commune,91027,Athis-Mons,CHAR,30,2024
+CODGEO,Code de la commune,91103,Brétigny-sur-Orge,CHAR,30,2024
+CODGEO,Code de la commune,91114,Brunoy,CHAR,30,2024
+CODGEO,Code de la commune,91174,Corbeil-Essonnes,CHAR,30,2024
+CODGEO,Code de la commune,9117491553,"Corbeil-Essonnes, Saint-Germain-lès-Corbeil",CHAR,30,2024
+CODGEO,Code de la commune,9120191657,"Draveil, Vigneux-sur-Seine",CHAR,30,2024
+CODGEO,Code de la commune,91207,Égly,CHAR,30,2024
+CODGEO,Code de la commune,91215,Épinay-sous-Sénart,CHAR,30,2024
+CODGEO,Code de la commune,91223,Étampes,CHAR,30,2024
+CODGEO,Code de la commune,91228,Évry-Courcouronnes,CHAR,30,2024
+CODGEO,Code de la commune,91235,Fleury-Mérogis,CHAR,30,2024
+CODGEO,Code de la commune,91286,Grigny,CHAR,30,2024
+CODGEO,Code de la commune,9128691687,"Grigny, Viry-Châtillon",CHAR,30,2024
+CODGEO,Code de la commune,91345,Longjumeau,CHAR,30,2024
+CODGEO,Code de la commune,91377,Massy,CHAR,30,2024
+CODGEO,Code de la commune,91421,Montgeron,CHAR,30,2024
+CODGEO,Code de la commune,9142191657,"Montgeron, Vigneux-sur-Seine",CHAR,30,2024
+CODGEO,Code de la commune,91514,Quincy-sous-Sénart,CHAR,30,2024
+CODGEO,Code de la commune,91521,Ris-Orangis,CHAR,30,2024
+CODGEO,Code de la commune,91549,Sainte-Geneviève-des-Bois,CHAR,30,2024
+CODGEO,Code de la commune,91570,Saint-Michel-sur-Orge,CHAR,30,2024
+CODGEO,Code de la commune,91589,Savigny-sur-Orge,CHAR,30,2024
+CODGEO,Code de la commune,91657,Vigneux-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,91692,Les Ulis,CHAR,30,2024
+CODGEO,Code de la commune,92002,Antony,CHAR,30,2024
+CODGEO,Code de la commune,92004,Asnières-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,9200492036,"Asnières-sur-Seine, Gennevilliers",CHAR,30,2024
+CODGEO,Code de la commune,92007,Bagneux,CHAR,30,2024
+CODGEO,Code de la commune,92019,Châtenay-Malabry,CHAR,30,2024
+CODGEO,Code de la commune,92024,Clichy,CHAR,30,2024
+CODGEO,Code de la commune,92025,Colombes,CHAR,30,2024
+CODGEO,Code de la commune,92036,Gennevilliers,CHAR,30,2024
+CODGEO,Code de la commune,92050,Nanterre,CHAR,30,2024
+CODGEO,Code de la commune,92078,Villeneuve-la-Garenne,CHAR,30,2024
+CODGEO,Code de la commune,930019300893055,"Aubervilliers, Bobigny, Pantin",CHAR,30,2024
+CODGEO,Code de la commune,930019302793066,"Aubervilliers, La Courneuve, Saint-Denis",CHAR,30,2024
+CODGEO,Code de la commune,9300593071,"Aulnay-sous-Bois, Sevran",CHAR,30,2024
+CODGEO,Code de la commune,93006,Bagnolet,CHAR,30,2024
+CODGEO,Code de la commune,9300693048,"Bagnolet, Montreuil",CHAR,30,2024
+CODGEO,Code de la commune,93007930089301093053,"Le Blanc-Mesnil, Bobigny, Bondy, Noisy-le-Sec",CHAR,30,2024
+CODGEO,Code de la commune,9300793029,"Le Blanc-Mesnil, Drancy",CHAR,30,2024
+CODGEO,Code de la commune,9300793030,"Le Blanc-Mesnil, Dugny",CHAR,30,2024
+CODGEO,Code de la commune,9300893029,"Bobigny, Drancy",CHAR,30,2024
+CODGEO,Code de la commune,93010,Bondy,CHAR,30,2024
+CODGEO,Code de la commune,9301093077,"Bondy, Villemomble",CHAR,30,2024
+CODGEO,Code de la commune,93013,Le Bourget,CHAR,30,2024
+CODGEO,Code de la commune,9301493047,"Clichy-sous-Bois, Montfermeil",CHAR,30,2024
+CODGEO,Code de la commune,93029,Drancy,CHAR,30,2024
+CODGEO,Code de la commune,93030,Dugny,CHAR,30,2024
+CODGEO,Code de la commune,93031,Épinay-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,93032,Gagny,CHAR,30,2024
+CODGEO,Code de la commune,93039,L'Île-Saint-Denis,CHAR,30,2024
+CODGEO,Code de la commune,93048,Montreuil,CHAR,30,2024
+CODGEO,Code de la commune,930489305393063,"Montreuil, Noisy-le-Sec, Romainville",CHAR,30,2024
+CODGEO,Code de la commune,93050,Neuilly-sur-Marne,CHAR,30,2024
+CODGEO,Code de la commune,93051,Noisy-le-Grand,CHAR,30,2024
+CODGEO,Code de la commune,93053,Noisy-le-Sec,CHAR,30,2024
+CODGEO,Code de la commune,93055,Pantin,CHAR,30,2024
+CODGEO,Code de la commune,9305593061,"Pantin, Le Pré-Saint-Gervais",CHAR,30,2024
+CODGEO,Code de la commune,93059,Pierrefitte-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,9305993066,"Pierrefitte-sur-Seine, Saint-Denis",CHAR,30,2024
+CODGEO,Code de la commune,9305993072,"Pierrefitte-sur-Seine, Stains",CHAR,30,2024
+CODGEO,Code de la commune,93063,Romainville,CHAR,30,2024
+CODGEO,Code de la commune,93064,Rosny-sous-Bois,CHAR,30,2024
+CODGEO,Code de la commune,93066,Saint-Denis,CHAR,30,2024
+CODGEO,Code de la commune,9306693072,"Saint-Denis, Stains",CHAR,30,2024
+CODGEO,Code de la commune,93070,Saint-Ouen-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,93071,Sevran,CHAR,30,2024
+CODGEO,Code de la commune,93072,Stains,CHAR,30,2024
+CODGEO,Code de la commune,93073,Tremblay-en-France,CHAR,30,2024
+CODGEO,Code de la commune,93078,Villepinte,CHAR,30,2024
+CODGEO,Code de la commune,93079,Villetaneuse,CHAR,30,2024
+CODGEO,Code de la commune,94002,Alfortville,CHAR,30,2024
+CODGEO,Code de la commune,94003,Arcueil,CHAR,30,2024
+CODGEO,Code de la commune,9400394037,"Arcueil, Gentilly",CHAR,30,2024
+CODGEO,Code de la commune,9400494044,"Boissy-Saint-Léger, Limeil-Brévannes",CHAR,30,2024
+CODGEO,Code de la commune,94011,Bonneuil-sur-Marne,CHAR,30,2024
+CODGEO,Code de la commune,94016,Cachan,CHAR,30,2024
+CODGEO,Code de la commune,94017,Champigny-sur-Marne,CHAR,30,2024
+CODGEO,Code de la commune,9401794019,"Champigny-sur-Marne, Chennevières-sur-Marne",CHAR,30,2024
+CODGEO,Code de la commune,94022,Choisy-le-Roi,CHAR,30,2024
+CODGEO,Code de la commune,94028,Créteil,CHAR,30,2024
+CODGEO,Code de la commune,94033,Fontenay-sous-Bois,CHAR,30,2024
+CODGEO,Code de la commune,9403794043,"Gentilly, Le Kremlin-Bicêtre",CHAR,30,2024
+CODGEO,Code de la commune,94038,L'Haÿ-les-Roses,CHAR,30,2024
+CODGEO,Code de la commune,9403894076,"L'Haÿ-les-Roses, Villejuif",CHAR,30,2024
+CODGEO,Code de la commune,94041,Ivry-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,940449407494078,"Limeil-Brévannes, Valenton, Villeneuve-Saint-Georges",CHAR,30,2024
+CODGEO,Code de la commune,94054,Orly,CHAR,30,2024
+CODGEO,Code de la commune,94068,Saint-Maur-des-Fossés,CHAR,30,2024
+CODGEO,Code de la commune,94073,Thiais,CHAR,30,2024
+CODGEO,Code de la commune,94074,Valenton,CHAR,30,2024
+CODGEO,Code de la commune,94076,Villejuif,CHAR,30,2024
+CODGEO,Code de la commune,94078,Villeneuve-Saint-Georges,CHAR,30,2024
+CODGEO,Code de la commune,94079,Villiers-sur-Marne,CHAR,30,2024
+CODGEO,Code de la commune,94081,Vitry-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,95018,Argenteuil,CHAR,30,2024
+CODGEO,Code de la commune,9501895063,"Argenteuil, Bezons",CHAR,30,2024
+CODGEO,Code de la commune,950199527795680,"Arnouville, Gonesse, Villiers-le-Bel",CHAR,30,2024
+CODGEO,Code de la commune,95063,Bezons,CHAR,30,2024
+CODGEO,Code de la commune,95127,Cergy,CHAR,30,2024
+CODGEO,Code de la commune,95218,Éragny,CHAR,30,2024
+CODGEO,Code de la commune,95219,Ermont,CHAR,30,2024
+CODGEO,Code de la commune,9521995252,"Ermont, Franconville",CHAR,30,2024
+CODGEO,Code de la commune,95252,Franconville,CHAR,30,2024
+CODGEO,Code de la commune,9525295582,"Franconville, Sannois",CHAR,30,2024
+CODGEO,Code de la commune,95268,Garges-lès-Gonesse,CHAR,30,2024
+CODGEO,Code de la commune,95277,Gonesse,CHAR,30,2024
+CODGEO,Code de la commune,95280,Goussainville,CHAR,30,2024
+CODGEO,Code de la commune,95306,Herblay-sur-Seine,CHAR,30,2024
+CODGEO,Code de la commune,9532395637,"Jouy-le-Moutier, Vauréal",CHAR,30,2024
+CODGEO,Code de la commune,95424,Montigny-lès-Cormeilles,CHAR,30,2024
+CODGEO,Code de la commune,95427,Montmagny,CHAR,30,2024
+CODGEO,Code de la commune,95476,Osny,CHAR,30,2024
+CODGEO,Code de la commune,95487,Persan,CHAR,30,2024
+CODGEO,Code de la commune,95488,Pierrelaye,CHAR,30,2024
+CODGEO,Code de la commune,95500,Pontoise,CHAR,30,2024
+CODGEO,Code de la commune,95555,Saint-Gratien,CHAR,30,2024
+CODGEO,Code de la commune,95572,Saint-Ouen-l'Aumône,CHAR,30,2024
+CODGEO,Code de la commune,95585,Sarcelles,CHAR,30,2024
+CODGEO,Code de la commune,95598,Soisy-sous-Montmorency,CHAR,30,2024
+CODGEO,Code de la commune,95607,Taverny,CHAR,30,2024
+CODGEO,Code de la commune,95680,Villiers-le-Bel,CHAR,30,2024
+CODGEO,Code de la commune,97209,Fort-de-France,CHAR,30,2024
+CODGEO,Code de la commune,97213,Le Lamentin,CHAR,30,2024
+CODGEO,Code de la commune,97222,Le Robert,CHAR,30,2024
+CODGEO,Code de la commune,97228,Sainte-Marie,CHAR,30,2024
+CODGEO,Code de la commune,97407,Le Port,CHAR,30,2024
+CODGEO,Code de la commune,97408,La Possession,CHAR,30,2024
+CODGEO,Code de la commune,97409,Saint-André,CHAR,30,2024
+CODGEO,Code de la commune,97410,Saint-Benoît,CHAR,30,2024
+CODGEO,Code de la commune,97411,Saint-Denis,CHAR,30,2024
+CODGEO,Code de la commune,97412,Saint-Joseph,CHAR,30,2024
+CODGEO,Code de la commune,97413,Saint-Leu,CHAR,30,2024
+CODGEO,Code de la commune,97414,Saint-Louis,CHAR,30,2024
+CODGEO,Code de la commune,97415,Saint-Paul,CHAR,30,2024
+CODGEO,Code de la commune,97416,Saint-Pierre,CHAR,30,2024
+CODGEO,Code de la commune,97418,Sainte-Marie,CHAR,30,2024
+CODGEO,Code de la commune,97420,Sainte-Suzanne,CHAR,30,2024
+CODGEO,Code de la commune,97422,Le Tampon,CHAR,30,2024
