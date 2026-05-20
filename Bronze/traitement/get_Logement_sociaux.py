@@ -8,3 +8,10 @@ df = pd.read_csv(url, sep=";")
 print(df.head())
 print(df.shape)
 
+project_root = os.path.dirname(__file__)  # script location
+output_path = os.path.join(project_root, "..", "..","Data", "Logements_sociaux", "logements_sociaux.csv")
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+df.to_csv(output_path, index=False)
+
+
+print("Saved here:", output_path)
