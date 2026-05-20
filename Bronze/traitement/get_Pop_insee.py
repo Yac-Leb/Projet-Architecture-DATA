@@ -45,7 +45,7 @@ for obs in observations:
 df = pd.DataFrame(extracted_data)
 #exportation des données dans leurs fichier
 project_root = os.path.dirname(__file__)  # script location
-output_path = os.path.join(project_root, "..","..", "Data","Population", "population.csv")
+output_path = os.path.join(project_root, "..", "Data","Population", "population.csv")
 
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
@@ -53,3 +53,5 @@ df.to_csv(output_path, index=False)
 
 print(f'Jeu de données : {identifier} \nTitre : {title} ')
 print(df)
+
+
