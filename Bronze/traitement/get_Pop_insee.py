@@ -51,7 +51,7 @@ os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
 df.to_csv(output_path, index=False)
 
-print(f'Jeu de données : {identifier} \nTitre : {title} ')
-print(df)
+#print(f'Jeu de données : {identifier} \nTitre : {title} ')
+#print(df)
 
 
