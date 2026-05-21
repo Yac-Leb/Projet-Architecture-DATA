@@ -5,8 +5,8 @@ url = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/logement-enca
 
 df = pd.read_csv(url, sep=";")
 
-print(df.head())
-print(df.shape)
+#print(df.head())
+#print(df.shape)
 
 project_root = os.path.dirname(__file__)  # script location
 output_path = os.path.join(project_root, "..","Data", "Loyer", "loyer.csv")
