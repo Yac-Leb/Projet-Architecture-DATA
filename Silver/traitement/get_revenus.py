@@ -6,9 +6,10 @@ project_root = os.path.dirname(__file__)
 input_path = os.path.join(
     project_root,
     "..",
+    "..",
+    "Bronze",
     "Data",
     "Revenus",
-    "raw",
     "BASE_TD_FILO_IRIS_2021_DEC.csv"
 )
 
@@ -21,25 +22,38 @@ output_dir = os.path.join(
 
 os.makedirs(output_dir, exist_ok=True)
 
-# Lecture CSV
-df = pd.read_csv(input_path, sep=";", dtype=str)
+print("Lecture du fichier Bronze...")
 
-# Garder uniquement Paris
+df = pd.read_csv(
+    input_path,
+    sep=";",
+    dtype=str
+)
+
+# Garder uniquement les IRIS de Paris
 df = df[df["IRIS"].str.startswith("751", na=False)]
 
-# Colonnes importantes
+# Garder les colonnes utiles
 df = df[[
     "IRIS",
     "DEC_MED21",
     "DEC_TP6021"
 ]]
 
-# Renommage propre
+# Renommer les colonnes
 df = df.rename(columns={
     "IRIS": "code_iris",
     "DEC_MED21": "revenu_median",
     "DEC_TP6021": "taux_pauvrete"
 })
+
+# Convertir les virgules françaises en points
+df["revenu_median"] = df["revenu_median"].str.replace(",", ".", regex=False)
+df["taux_pauvrete"] = df["taux_pauvrete"].str.replace(",", ".", regex=False)
+
+# Conversion numérique
+df["revenu_median"] = pd.to_numeric(df["revenu_median"], errors="coerce")
+df["taux_pauvrete"] = pd.to_numeric(df["taux_pauvrete"], errors="coerce")
 
 # Code arrondissement
 df["code_arrondissement"] = df["code_iris"].str[:5]
@@ -47,17 +61,19 @@ df["code_arrondissement"] = df["code_iris"].str[:5]
 # Année
 df["annee"] = 2021
 
-# Sauvegarde
+# Supprimer seulement les lignes sans revenu médian
+df = df.dropna(subset=["revenu_median"])
+
 output_path = os.path.join(
     output_dir,
-    "revenus_iris_paris_2021.csv"
+    "revenus_clean.csv"
 )
 
 df.to_csv(output_path, index=False, encoding="utf-8")
 
-# Vérification
+print("\nDataset Silver créé.")
 print(df.head())
 print(df.shape)
 
-print("Fichier sauvegardé ici :")
+print("\nFichier sauvegardé ici :")
 print(output_path)
