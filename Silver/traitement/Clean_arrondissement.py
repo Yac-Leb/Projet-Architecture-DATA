@@ -7,7 +7,7 @@ input_path = os.path.join(
     project_root,
     "..",
     "..",
-    "Bronze",
+    "Stockage",
     "Data",
     "Arrondissements",
     "arrondissements_paris.geojson"

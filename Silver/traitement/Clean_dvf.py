@@ -8,7 +8,7 @@ input_dir = os.path.join(
     project_root,
     "..",
     "..",
-    "Bronze",
+    "Stockage",
     "Data",
     "DVF"
 )

@@ -7,7 +7,7 @@ input_path = os.path.join(
     project_root,
     "..",
     "..",
-    "Bronze",
+    "Stockage",
     "Data",
     "Revenus",
     "BASE_TD_FILO_IRIS_2021_DEC.csv"
