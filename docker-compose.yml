@@ -5,18 +5,44 @@ services:
   postgres:
     image: postgres:15
     container_name: postgres_db
-
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: urban_db
-
     ports:
       - "5432:5432"
 
   mongodb:
     image: mongo
     container_name: mongo_db
-
     ports:
       - "27017:27017"
+
+  python_app:
+    build: .
+    container_name: python_app
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+      - mongodb
+    command: tail -f /dev/null
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8080:8080"
+
+  mongo_express:
+    image: mongo-express
+    container_name: mongo_express
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongodb:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: pass
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    restart: always
