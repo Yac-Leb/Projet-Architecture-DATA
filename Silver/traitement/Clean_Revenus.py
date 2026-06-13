@@ -1,79 +1,32 @@
-import pandas as pd
+import sys
 import os
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../Stockage/traitement"))
 
-project_root = os.path.dirname(__file__)
+import pandas as pd
+from db_connection import get_postgres_engine, create_silver_schema
 
-input_path = os.path.join(
-    project_root,
-    "..",
-    "..",
-    "Stockage",
-    "Data",
-    "Revenus",
-    "BASE_TD_FILO_IRIS_2021_DEC.csv"
-)
+engine = get_postgres_engine()
+create_silver_schema(engine)
 
-output_dir = os.path.join(
-    project_root,
-    "..",
-    "Data",
-    "Revenus"
-)
+df = pd.read_sql("SELECT * FROM bronze.revenus_raw", engine)
 
-os.makedirs(output_dir, exist_ok=True)
+# Filtrer Paris (codes communes 75101–75120)
+df = df[df["CODGEO"].astype(str).str.startswith("751")]
 
-print("Lecture du fichier Bronze...")
+# Renommer les colonnes clés FiLoSoFi DISP
+rename_map = {}
+if "CODGEO" in df.columns:
+    rename_map["CODGEO"] = "code_arrondissement"
+if "LIBGEO" in df.columns:
+    rename_map["LIBGEO"] = "nom_arrondissement"
+if "Q219" in df.columns:
+    rename_map["Q219"] = "revenu_median"
+if "GI19" in df.columns:
+    rename_map["GI19"] = "indice_gini"
+if "TP6019" in df.columns:
+    rename_map["TP6019"] = "taux_pauvrete"
 
-df = pd.read_csv(
-    input_path,
-    sep=";",
-    dtype=str
-)
+df = df.rename(columns=rename_map)
 
-# Garder uniquement les IRIS de Paris
-df = df[df["IRIS"].str.startswith("751", na=False)]
-
-# Garder les colonnes utiles
-df = df[[
-    "IRIS",
-    "DEC_MED21",
-    "DEC_TP6021"
-]]
-
-# Renommer les colonnes
-df = df.rename(columns={
-    "IRIS": "code_iris",
-    "DEC_MED21": "revenu_median",
-    "DEC_TP6021": "taux_pauvrete"
-})
-
-# Convertir les virgules françaises en points
-df["revenu_median"] = df["revenu_median"].str.replace(",", ".", regex=False)
-df["taux_pauvrete"] = df["taux_pauvrete"].str.replace(",", ".", regex=False)
-
-# Conversion numérique
-df["revenu_median"] = pd.to_numeric(df["revenu_median"], errors="coerce")
-df["taux_pauvrete"] = pd.to_numeric(df["taux_pauvrete"], errors="coerce")
-
-# Code arrondissement
-df["code_arrondissement"] = df["code_iris"].str[:5]
-
-# Année
-df["annee"] = 2021
-
-# Supprimer seulement les lignes sans revenu médian
-df = df.dropna(subset=["revenu_median"])
-
-output_path = os.path.join(
-    output_dir,
-    "revenus_clean.csv"
-)
-
-df.to_csv(output_path, index=False, encoding="utf-8")
-
-print("\nDataset Silver créé.")
-print(df.head())
-print(df.shape)
-
-print("\nFichier sauvegardé ici :")
-print(output_path)
+df.to_sql("revenus", engine, schema="silver", if_exists="replace", index=False, chunksize=5000, method="multi")
+print(f"silver.revenus chargée avec {len(df)} lignes.")

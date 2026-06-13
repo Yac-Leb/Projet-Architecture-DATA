@@ -8,8 +8,14 @@ scripts = [
     "get_Logement_sociaux.py",
     "get_loyers.py",
     "get_Pop_insee.py",
-    "get_transport.py"
+    "get_arrondissement.py",
+    "get_fraicheur.py",
+    "get_transport.py",
+    "get_marches.py",
+    "get_revenus.py",
 ]
+
+failed = []
 
 for script in scripts:
 
@@ -22,13 +28,21 @@ for script in scripts:
     try:
         subprocess.run(
             ["python", script_path],
-            check=True
+            check=True,
+            cwd=os.path.join(project_root, "traitement"),
         )
-
         print(f"{script} terminé avec succès.")
 
     except subprocess.CalledProcessError as e:
         print(f"Erreur lors de l'exécution de {script}")
         print(e)
+        failed.append(script)
 
-print("\nTous les scripts Bronze ont été exécutés.")
+print("\n" + "=" * 50)
+if not failed:
+    print("Tous les scripts Bronze ont été exécutés.")
+else:
+    print(f"{len(failed)} script(s) en échec :")
+    for s in failed:
+        print(f"  - {s}")
+print("=" * 50)

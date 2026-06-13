@@ -26,7 +26,37 @@ services:
     depends_on:
       - postgres
       - mongodb
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: urban_db
+      MONGO_HOST: mongodb
+      MONGO_PORT: "27017"
     command: tail -f /dev/null
+
+  api:
+    build: .
+    container_name: api
+    working_dir: /app
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: urban_db
+      MONGO_HOST: mongodb
+      MONGO_PORT: "27017"
+    depends_on:
+      - postgres
+      - mongodb
+    restart: unless-stopped
 
   adminer:
     image: adminer
