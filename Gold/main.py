@@ -4,15 +4,14 @@ import os
 project_root = os.path.dirname(__file__)
 
 scripts = [
-    "get_dvf.py",
-    "get_Logement_sociaux.py",
-    "get_loyers.py",
-    "get_Pop_insee.py",
-    "get_arrondissement.py",
-    "get_fraicheur.py",
-    "get_transport.py",
-    "get_marches.py",
-    "get_revenus.py",
+    "Gold_prix_m2.py",
+    "Gold_types_logements.py",
+    "Gold_accessibilite.py",
+    "Gold_logements_sociaux.py",
+    "Gold_fraicheur.py",
+    "Gold_transport.py",
+    "Gold_marches.py",
+    "Gold_tension.py",
 ]
 
 failed = []
@@ -40,7 +39,7 @@ for script in scripts:
 
 print("\n" + "=" * 50)
 if not failed:
-    print("Tous les scripts Bronze ont été exécutés.")
+    print("Tous les scripts Gold ont été exécutés.")
 else:
     print(f"{len(failed)} script(s) en échec :")
     for s in failed:

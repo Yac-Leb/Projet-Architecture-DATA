@@ -1,130 +1,23 @@
-import pandas as pd
+import sys
 import os
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../Stockage/traitement"))
 
-project_root = os.path.dirname(__file__)
+import pandas as pd
+from db_connection import get_postgres_engine, create_silver_schema
 
-input_path = os.path.join(
-    project_root,
-    "..",
-    "..",
-    "Stockage",
-    "Data",
-    "Loyer",
-    "loyer.csv"
-)
+engine = get_postgres_engine()
+create_silver_schema(engine)
 
-output_dir = os.path.join(
-    project_root,
-    "..",
-    "Data",
-    "Loyer"
-)
+df = pd.read_sql("SELECT * FROM bronze.loyers_raw", engine)
 
-os.makedirs(output_dir, exist_ok=True)
-
-print("Lecture dataset loyers Bronze...")
-
-df = pd.read_csv(input_path, sep=",", dtype=str)
-
-# Colonnes utiles
-df = df[[
-    "annee",
-    "id_zone",
-    "id_quartier",
-    "nom_quartier",
-    "piece",
-    "epoque",
-    "meuble_txt",
-    "ref",
-    "max",
-    "min",
-    "ville",
-    "code_grand_quartier",
-    "geo_point_2d"
-]]
-
-# Renommage propre
-df = df.rename(columns={
-    "piece": "nombre_pieces",
-    "meuble_txt": "type_location",
-    "ref": "loyer_reference_m2",
-    "max": "loyer_max_m2",
-    "min": "loyer_min_m2",
-    "code_grand_quartier": "code_quartier"
-})
-
-# Garder Paris uniquement
-df = df[df["ville"].str.lower() == "paris"]
-
-# Conversion numériques
-numeric_cols = [
-    "annee",
-    "id_zone",
-    "id_quartier",
-    "nombre_pieces",
-    "loyer_reference_m2",
-    "loyer_max_m2",
-    "loyer_min_m2",
-    "code_quartier"
-]
-
-for col in numeric_cols:
-    df[col] = (
-        df[col]
-        .astype(str)
-        .str.replace(",", ".", regex=False)
+# Nettoyer les colonnes numériques (virgule → point)
+cols_num = [c for c in df.columns if "loyer" in c.lower() or "prix" in c.lower()]
+for col in cols_num:
+    df[col] = pd.to_numeric(
+        df[col].astype(str).str.replace(",", ".").str.strip(), errors="coerce"
     )
-    df[col] = pd.to_numeric(df[col], errors="coerce")
 
-# Extraction latitude / longitude
-def extract_lat_lon(value):
-    if pd.isna(value):
-        return pd.Series([None, None])
+df = df.dropna(how="all")
 
-    parts = str(value).split(",")
-
-    if len(parts) != 2:
-        return pd.Series([None, None])
-
-    latitude = parts[0].strip()
-    longitude = parts[1].strip()
-
-    return pd.Series([latitude, longitude])
-
-df[["latitude", "longitude"]] = df["geo_point_2d"].apply(extract_lat_lon)
-
-df["latitude"] = pd.to_numeric(df["latitude"], errors="coerce")
-df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
-
-df = df.drop(columns=["geo_point_2d"])
-
-# Suppression des lignes inutilisables
-df = df.dropna(subset=[
-    "annee",
-    "loyer_reference_m2",
-    "loyer_max_m2",
-    "loyer_min_m2"
-])
-
-# Filtrage valeurs aberrantes
-df = df[
-    (df["loyer_reference_m2"] > 0) &
-    (df["loyer_reference_m2"] < 100)
-]
-
-# Tri
-df = df.sort_values(by=["annee", "id_zone", "id_quartier"])
-
-output_path = os.path.join(
-    output_dir,
-    "loyer_clean.csv"
-)
-
-df.to_csv(output_path, index=False, encoding="utf-8")
-
-print("\nDataset loyers Silver créé.")
-print(df.head())
-print(df.shape)
-
-print("\nFichier sauvegardé ici :")
-print(output_path)
+df.to_sql("loyers", engine, schema="silver", if_exists="replace", index=False, chunksize=10000, method="multi")
+print(f"silver.loyers chargée avec {len(df)} lignes.")

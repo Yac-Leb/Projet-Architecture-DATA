@@ -1,138 +1,43 @@
-import pandas as pd
+import sys
 import os
-import glob
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../Stockage/traitement"))
 
-project_root = os.path.dirname(__file__)
+import pandas as pd
+from db_connection import get_postgres_engine, create_silver_schema
 
-input_dir = os.path.join(
-    project_root,
-    "..",
-    "..",
-    "Stockage",
-    "Data",
-    "DVF"
+engine = get_postgres_engine()
+create_silver_schema(engine)
+
+df = pd.read_sql("SELECT * FROM bronze.dvf_raw", engine)
+
+# Garder uniquement les biens immobiliers
+df = df[df["type_local"].isin(["Appartement", "Maison"])]
+
+# Nettoyer valeur_fonciere (virgule → point)
+df["valeur_fonciere"] = (
+    df["valeur_fonciere"].astype(str).str.replace(",", ".").str.strip()
 )
+df["valeur_fonciere"] = pd.to_numeric(df["valeur_fonciere"], errors="coerce")
+df["surface_reelle_bati"] = pd.to_numeric(df["surface_reelle_bati"], errors="coerce")
 
-output_dir = os.path.join(
-    project_root,
-    "..",
-    "Data",
-    "DVF"
-)
+# Supprimer les lignes sans surface ni valeur
+df = df.dropna(subset=["valeur_fonciere", "surface_reelle_bati"])
+df = df[df["surface_reelle_bati"] > 0]
 
-os.makedirs(output_dir, exist_ok=True)
+# Calcul prix/m²
+df["prix_m2"] = df["valeur_fonciere"] / df["surface_reelle_bati"]
 
-files = glob.glob(os.path.join(input_dir, "dvf_paris_*.csv.gz"))
+# Filtrer les valeurs aberrantes
+df = df[(df["prix_m2"] >= 1000) & (df["prix_m2"] <= 50000)]
 
-all_data = []
+# code_commune = code arrondissement pour Paris (75101–75120)
+colonnes = [
+    "code_commune", "nom_commune", "type_local",
+    "valeur_fonciere", "surface_reelle_bati", "nombre_pieces_principales",
+    "prix_m2", "longitude", "latitude", "annee",
+]
+df = df[[c for c in colonnes if c in df.columns]]
+df = df.rename(columns={"code_commune": "code_arrondissement"})
 
-for file_path in files:
-    print("\nLecture :", file_path)
-
-    df = pd.read_csv(
-        file_path,
-        compression="gzip",
-        dtype=str,
-        low_memory=False
-    )
-
-    print("Colonnes disponibles :")
-    print(df.columns.tolist())
-    print("Shape brute :", df.shape)
-
-    year = os.path.basename(file_path).split("_")[-1].replace(".csv.gz", "")
-
-    columns_to_keep = [
-        "id_mutation",
-        "date_mutation",
-        "nature_mutation",
-        "valeur_fonciere",
-        "adresse_numero",
-        "adresse_nom_voie",
-        "code_postal",
-        "code_commune",
-        "nom_commune",
-        "type_local",
-        "surface_reelle_bati",
-        "nombre_pieces_principales",
-        "surface_terrain",
-        "longitude",
-        "latitude"
-    ]
-
-    existing_columns = [col for col in columns_to_keep if col in df.columns]
-    df = df[existing_columns]
-
-    df["annee"] = int(year)
-
-    all_data.append(df)
-
-if all_data:
-    final_df = pd.concat(all_data, ignore_index=True)
-
-    # Nettoyage valeurs numériques
-    numeric_cols = [
-        "valeur_fonciere",
-        "surface_reelle_bati",
-        "nombre_pieces_principales",
-        "surface_terrain",
-        "longitude",
-        "latitude"
-    ]
-
-    for col in numeric_cols:
-        if col in final_df.columns:
-            final_df[col] = (
-                final_df[col]
-                .astype(str)
-                .str.replace(",", ".", regex=False)
-            )
-            final_df[col] = pd.to_numeric(final_df[col], errors="coerce")
-
-    # Garder uniquement les ventes
-    if "nature_mutation" in final_df.columns:
-        final_df = final_df[final_df["nature_mutation"] == "Vente"]
-
-    # Garder uniquement appartements / maisons
-    if "type_local" in final_df.columns:
-        final_df = final_df[
-            final_df["type_local"].isin(["Appartement", "Maison"])
-        ]
-
-    # Supprimer les lignes inutilisables pour prix/m²
-    final_df = final_df.dropna(
-        subset=["valeur_fonciere", "surface_reelle_bati"]
-    )
-
-    final_df = final_df[final_df["surface_reelle_bati"] > 0]
-    final_df = final_df[final_df["valeur_fonciere"] > 0]
-
-    # Calcul prix au m²
-    final_df["prix_m2"] = (
-        final_df["valeur_fonciere"] / final_df["surface_reelle_bati"]
-    )
-
-    # Filtrer valeurs aberrantes
-    final_df = final_df[
-        (final_df["prix_m2"] >= 1000) &
-        (final_df["prix_m2"] <= 50000)
-    ]
-
-    # Code arrondissement
-    final_df["code_arrondissement"] = final_df["code_postal"]
-
-    output_path = os.path.join(output_dir, "dvf_paris_clean.csv")
-
-    final_df.to_csv(
-        output_path,
-        index=False,
-        encoding="utf-8"
-    )
-
-    print("\nDataset DVF Silver créé.")
-    print(final_df.head())
-    print(final_df.shape)
-    print("Fichier sauvegardé ici :", output_path)
-
-else:
-    print("Aucun fichier DVF trouvé.")
+df.to_sql("dvf", engine, schema="silver", if_exists="replace", index=False, chunksize=10000, method="multi")
+print(f"silver.dvf chargée avec {len(df)} lignes.")
