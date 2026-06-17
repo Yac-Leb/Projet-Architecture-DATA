@@ -1,4 +1,4 @@
-# 🏙️ Urban Data Explorer — Paris
+# Urban Data Explorer — Paris
 
 Projet scolaire de **Data Engineering / Architecture de données**.
 
@@ -10,7 +10,7 @@ L'architecture suit le modèle **médaillon** : `Bronze (brut) → Silver (netto
 
 ---
 
-## 🧱 Architecture
+##  Architecture
 
 ```
 Sources open data (DVF, INSEE, IDFM, Open Data Paris...)
@@ -39,7 +39,7 @@ Sources open data (DVF, INSEE, IDFM, Open Data Paris...)
 
 ---
 
-## ⚙️ Stack technique
+##  Stack technique
 
 - **Python** (pandas, SQLAlchemy, PyMongo, requests)
 - **PostgreSQL** — schémas `bronze`, `silver`, `gold`
@@ -51,14 +51,14 @@ Sources open data (DVF, INSEE, IDFM, Open Data Paris...)
 
 ---
 
-## 📦 Prérequis
+##  Prérequis
 
 - **Docker** et **Docker Compose** installés.
 - Aucune installation Python locale n'est nécessaire : tout s'exécute dans des conteneurs.
 
 ---
 
-## 🚀 Installation et lancement
+##  Installation et lancement
 
 ### 1. Construire l'image de l'application Python
 
@@ -101,7 +101,7 @@ Une fois les pipelines exécutés, la carte interactive est disponible sur **htt
 
 ---
 
-## 🔍 Vérifier les résultats
+##  Vérifier les résultats
 
 ### En ligne de commande
 
@@ -131,7 +131,7 @@ Dans Adminer, sélectionne la base `urban_db` puis explore les schémas `bronze`
 
 ---
 
-## 🔌 API REST (FastAPI)
+##  API REST (FastAPI)
 
 Une API expose les indicateurs de la couche `gold`. Elle démarre automatiquement avec
 `docker compose up -d` (service `api`, port **8000**).
@@ -213,7 +213,7 @@ Chaque indicateur est une table agrégée par `code_arrondissement` (1 à 20).
 
 ---
 
-## 🛑 Arrêter le projet
+##  Arrêter le projet
 
 ```bash
 docker compose down        # arrête et supprime les conteneurs (les données sont conservées)
@@ -222,7 +222,7 @@ docker compose down -v     # idem + supprime les volumes (efface toutes les donn
 
 ---
 
-## 🗂️ Structure du projet
+##  Structure du projet
 
 ```
 .
