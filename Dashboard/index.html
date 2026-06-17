@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Data Explorer — Paris</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">UD</span>
+      <div class="brand-text">
+        <div class="brand-title">Urban Data Explorer</div>
+        <div class="brand-sub">Immobilier &amp; qualité de vie · 20 arrondissements de Paris</div>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button id="tab-carte" class="tab active">🗺️ Carte</button>
+      <button id="tab-comparaison" class="tab">⚖️ Comparaison</button>
+    </nav>
+  </header>
+
+  <div id="status" class="status">Chargement des données…</div>
+
+  <!-- ===================== VUE CARTE ===================== -->
+  <main id="vue-carte" class="vue carte-grid">
+
+    <!-- Contrôles (gauche) -->
+    <aside class="panel controls">
+      <div class="ctl-group">
+        <span class="ctl-label">Indicateur</span>
+        <select id="select-indicateur"></select>
+      </div>
+
+      <div class="ctl-group">
+        <span class="ctl-label">Arrondissement</span>
+        <select id="select-arr"></select>
+      </div>
+
+      <div class="ctl-group">
+        <span class="ctl-label">Année</span>
+        <div class="timeline-row">
+          <button id="annee-prev" class="step" aria-label="année précédente">‹</button>
+          <span id="annee-label" class="annee">—</span>
+          <button id="annee-next" class="step" aria-label="année suivante">›</button>
+        </div>
+        <input id="annee-slider" type="range" min="0" max="0" step="1" value="0" />
+      </div>
+
+      <div class="ctl-group calque">
+        <label class="toggle">
+          <input type="checkbox" id="toggle-fontaines" />
+          <span>💧 Fontaines &amp; eau</span>
+        </label>
+        <div id="fontaines-legende" class="fontaines-legende hidden"></div>
+      </div>
+
+      <div class="ctl-group calque">
+        <label class="toggle">
+          <input type="checkbox" id="toggle-marches" />
+          <span>🥕 Marchés alimentaires</span>
+        </label>
+      </div>
+
+      <div class="ctl-group calque">
+        <label class="toggle">
+          <input type="checkbox" id="toggle-transport" />
+          <span>🚇 Arrêts de transport</span>
+        </label>
+        <div id="transport-legende" class="fontaines-legende hidden"></div>
+      </div>
+
+      <p class="ctl-hint">Cliquez un arrondissement pour afficher sa fiche sur la carte et le détail complet à droite.</p>
+    </aside>
+
+    <!-- Carte (centre) -->
+    <div class="map-wrap">
+      <div id="map"></div>
+      <div id="legende-map" class="legende-map hidden"></div>
+    </div>
+
+    <!-- Panneau détail (droite) -->
+    <aside class="detail" id="detail"></aside>
+  </main>
+
+  <!-- ===================== VUE COMPARAISON ===================== -->
+  <main id="vue-comparaison" class="vue hidden">
+    <div class="comparaison">
+      <h2 class="cmp-titre">Comparer deux arrondissements</h2>
+      <div class="selectors">
+        <label class="field"><span>Arrondissement A</span><select id="select-a"></select></label>
+        <label class="field"><span>Arrondissement B</span><select id="select-b"></select></label>
+      </div>
+      <div id="tableau-comparaison" class="tableau"></div>
+      <div class="charts">
+        <div class="chart-box"><h3>Évolution du prix médian au m²</h3><canvas id="chart-prix"></canvas></div>
+        <div class="chart-box"><h3>Indicateurs comparés</h3><canvas id="chart-composites"></canvas></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

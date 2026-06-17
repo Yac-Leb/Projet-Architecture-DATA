@@ -45,6 +45,7 @@ Sources open data (DVF, INSEE, IDFM, Open Data Paris...)
 - **PostgreSQL** — schémas `bronze`, `silver`, `gold`
 - **MongoDB** — géométries GeoJSON des arrondissements
 - **FastAPI** — API REST exposant les indicateurs (port 8000)
+- **Leaflet** — dashboard web : carte de Paris interactive (port 8050)
 - **Docker / Docker Compose** — orchestration de tous les services
 - **Adminer** & **Mongo Express** — interfaces d'administration des bases
 
@@ -73,7 +74,8 @@ docker compose build python_app
 docker compose up -d
 ```
 
-Démarre : PostgreSQL, MongoDB, le conteneur `python_app`, Adminer et Mongo Express.
+Démarre tous les services : PostgreSQL, MongoDB, `python_app`, l'**API** (port 8000),
+le **dashboard** (port 8050), Adminer et Mongo Express.
 
 ### 3. Exécuter les pipelines dans l'ordre
 
@@ -91,6 +93,11 @@ docker exec -it python_app python /app/Gold/main.py
 ```
 
 > 💡 Chaque orchestrateur affiche les scripts exécutés et signale ceux qui échouent.
+
+### 4. Ouvrir le dashboard
+
+Une fois les pipelines exécutés, la carte interactive est disponible sur **http://localhost:8050**
+(et l'API sur **http://localhost:8000/docs**).
 
 ---
 
@@ -115,6 +122,8 @@ docker exec -it mongo_db mongosh --eval "db.getSiblingDB('urban_db').arrondissem
 
 | Interface | URL | Connexion |
 |-----------|-----|-----------|
+| **Dashboard** (carte interactive) | http://localhost:8050 | — |
+| **API FastAPI** (Swagger) | http://localhost:8000/docs | — |
 | **Adminer** (PostgreSQL) | http://localhost:8080 | serveur `postgres` · utilisateur `admin` · mot de passe `admin` · base `urban_db` |
 | **Mongo Express** (MongoDB) | http://localhost:8081 | utilisateur `admin` · mot de passe `pass` |
 
@@ -132,7 +141,7 @@ Une API expose les indicateurs de la couche `gold`. Elle démarre automatiquemen
 | Méthode | Endpoint | Description |
 |---------|----------|-------------|
 | `GET` | `/` | Informations et liste des ressources |
-| `GET` | `/indicateurs` | Liste des 8 indicateurs disponibles |
+| `GET` | `/indicateurs` | Liste des 10 indicateurs disponibles |
 | `GET` | `/indicateurs/{nom}` | Données d'un indicateur (ex. `prix_m2`, `fraicheur`...) |
 | `GET` | `/indicateurs/{nom}?arrondissement=1` | Filtré sur un arrondissement (1 à 20) |
 | `GET` | `/arrondissements` | Arrondissements au format GeoJSON |
@@ -154,6 +163,30 @@ curl "http://localhost:8000/arrondissements"
 
 ---
 
+## 🗺️ Dashboard — carte interactive
+
+Un dashboard web (Leaflet, sans build) consomme l'API et affiche une **carte choroplèthe
+interactive des 20 arrondissements**. Il démarre avec `docker compose up -d` (service `dashboard`).
+
+**Accès : http://localhost:8050**
+
+Fonctionnalités :
+- **Carte choroplèthe** colorée par un indicateur choisi dans un menu déroulant (prix/m², part de
+  logements sociaux, accessibilité, fraîcheur, transport, marchés, tension) + légende dynamique.
+- **Cartes KPI** (à droite) : prix médian, part de logements sociaux, accessibilité, tension de
+  l'arrondissement sélectionné, avec badge d'évolution annuelle.
+- **Timeline** : curseur d'année (2021→2024) qui met à jour la carte et les KPI du prix.
+- **Distribution résidentielle** (en bas) : répartition par nombre de pièces (Studio/T1, T2, T3, T4+).
+- **Survol** → infobulle (nom + prix + évolution) ; **clic** → sélectionne l'arrondissement.
+- **Calque Fontaines à boire** : case à cocher qui affiche les ~1 300 fontaines de Paris ; clic sur
+  une fontaine → détails (type, modèle, adresse, en service ou non).
+- **Mode Comparaison** : deux arrondissements côte à côte (tableau + graphiques d'évolution
+  du prix et des indicateurs composites).
+
+> Le dashboard appelle l'API sur `http://localhost:8000` ; les deux doivent tourner.
+
+---
+
 ## 📊 Indicateurs (schéma `gold`)
 
 Chaque indicateur est une table agrégée par `code_arrondissement` (1 à 20).
@@ -164,8 +197,10 @@ Chaque indicateur est une table agrégée par `code_arrondissement` (1 à 20).
 |-------|---------|
 | `gold.prix_m2` | Prix médian au m² par année + évolution annuelle |
 | `gold.types_logements` | Répartition appartements / maisons (nombre, surface, part %) |
+| `gold.pieces` | Répartition par nombre de pièces (Studio/T1, T2, T3, T4+) |
 | `gold.accessibilite` | Accessibilité prix vs revenus (m² achetables par an de revenu) |
 | `gold.logements_sociaux` | Logements sociaux financés par année + cumul |
+| `gold.logements_sociaux_part` | Part des logements sociaux (% des ménages) |
 
 **Indicateurs composites**
 
@@ -207,6 +242,10 @@ docker compose down -v     # idem + supprime les volumes (efface toutes les donn
 │       └── Gold_*.py         #   calcul des indicateurs silver -> gold
 ├── api/                      # API REST
 │   └── main.py               #   FastAPI : endpoints des indicateurs gold
+├── Dashboard/                # Front-end (Leaflet, servi par nginx)
+│   ├── index.html            #   structure (onglets Carte / Comparaison)
+│   ├── style.css             #   mise en page
+│   └── app.js                #   carte choroplèthe + interactions + comparaison
 ├── docker-compose.yml        # Définition des services
 ├── dockerfile                # Image python_app
 └── requirements.txt          # Dépendances Python

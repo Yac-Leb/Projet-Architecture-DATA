@@ -58,6 +58,17 @@ services:
       - mongodb
     restart: unless-stopped
 
+  dashboard:
+    image: nginx:alpine
+    container_name: dashboard
+    volumes:
+      - ./Dashboard:/usr/share/nginx/html:ro
+    ports:
+      - "8050:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
   adminer:
     image: adminer
     container_name: adminer

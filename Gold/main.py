@@ -8,10 +8,16 @@ scripts = [
     "Gold_types_logements.py",
     "Gold_accessibilite.py",
     "Gold_logements_sociaux.py",
+    "Gold_logements_sociaux_part.py",
+    "Gold_pieces.py",
     "Gold_fraicheur.py",
     "Gold_transport.py",
     "Gold_marches.py",
     "Gold_tension.py",
+    "Gold_fontaines.py",
+    "Gold_fraicheur_points.py",
+    "Gold_marches_points.py",
+    "Gold_transport_points.py",
 ]
 
 failed = []

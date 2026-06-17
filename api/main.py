@@ -38,8 +38,10 @@ engine = get_postgres_engine()
 INDICATEURS = {
     "prix_m2": "Prix médian au m² par année + évolution",
     "types_logements": "Répartition appartements / maisons",
+    "pieces": "Répartition par nombre de pièces (Studio/T1, T2, T3, T4+)",
     "accessibilite": "Accessibilité prix vs revenus",
     "logements_sociaux": "Logements sociaux financés par année + cumul",
+    "logements_sociaux_part": "Part des logements sociaux (% des ménages)",
     "fraicheur": "Ressources de fraîcheur urbaine",
     "transport": "Arrêts de transport par mode",
     "marches": "Marchés alimentaires",
@@ -92,6 +94,54 @@ def indicateur(
             detail=f"Indicateur inconnu : '{nom}'. Disponibles : {list(INDICATEURS)}",
         )
     return lire_table(nom, arrondissement)
+
+
+@app.get("/fontaines", tags=["Géographie"])
+def fontaines(
+    arrondissement: int | None = Query(
+        None, ge=1, le=20, description="Filtrer sur un arrondissement (1 à 20)"
+    ),
+):
+    """Liste des fontaines à boire (points : lat, lon + détails) pour la carte."""
+    return lire_table("fontaines", arrondissement)
+
+
+@app.get("/fraicheur_points", tags=["Géographie"])
+def fraicheur_points(
+    arrondissement: int | None = Query(None, ge=1, le=20, description="Filtrer (1 à 20)")
+):
+    """Points de fraîcheur urbaine (fontaines, espaces verts, équipements, commerces eau)."""
+    return lire_table("fraicheur_points", arrondissement)
+
+
+@app.get("/marches_points", tags=["Géographie"])
+def marches_points(
+    arrondissement: int | None = Query(None, ge=1, le=20, description="Filtrer (1 à 20)")
+):
+    """Marchés alimentaires de Paris (points individuels : lat/lon + nom + jours)."""
+    return lire_table("marches_points", arrondissement)
+
+
+@app.get("/transport_points", tags=["Géographie"])
+def transport_points(
+    arrondissement: int | None = Query(None, ge=1, le=20, description="Filtrer (1 à 20)"),
+    mode: str | None = Query(None, description="Filtrer par mode (metro, rer, bus, tram…)"),
+):
+    """Arrêts de transport de Paris (points individuels : lat/lon + nom + mode)."""
+    requete = "SELECT * FROM gold.transport_points"
+    filtres, params = [], {}
+    if arrondissement is not None:
+        filtres.append("code_arrondissement = %(arr)s")
+        params["arr"] = arrondissement
+    if mode is not None:
+        filtres.append("mode = %(mode)s")
+        params["mode"] = mode
+    if filtres:
+        requete += " WHERE " + " AND ".join(filtres)
+    df = pd.read_sql(requete, engine, params=params)
+    df = df.replace([np.inf, -np.inf], np.nan)
+    df = df.astype(object).where(pd.notnull(df), None)
+    return df.to_dict(orient="records")
 
 
 @app.get("/arrondissements", tags=["Géographie"])
