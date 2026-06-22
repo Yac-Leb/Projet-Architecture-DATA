@@ -88,3 +88,20 @@ services:
     depends_on:
       - mongodb
     restart: always
+
+  scheduler:
+    image: mcuadros/ofelia:latest
+    container_name: scheduler
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - python_app
+    command: daemon --docker
+    labels:
+      ofelia.job-run.pipeline.schedule: "0 11 * * *"
+      ofelia.job-run.pipeline.container: python_app
+      ofelia.job-run.pipeline.command: >
+        bash -c "python /app/Stockage/main.py &&
+                 python /app/Silver/main.py &&
+                 python /app/Gold/main.py"
+    restart: unless-stopped
