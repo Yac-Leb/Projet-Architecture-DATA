@@ -1,21 +1,26 @@
 import io
 import requests
 import pandas as pd
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from db_connection import get_postgres_engine, create_bronze_schema
 
 YEARS = [2021, 2022, 2023, 2024]
 
-frames = []
 
-for year in YEARS:
+def _telecharger_annee(year):
     url = f"https://files.data.gouv.fr/geo-dvf/latest/csv/{year}/departements/75.csv.gz"
     print(f"Téléchargement DVF Paris {year}...")
     response = requests.get(url, timeout=120)
     response.raise_for_status()
     df = pd.read_csv(io.BytesIO(response.content), compression="gzip", low_memory=False)
     df["annee"] = year
-    frames.append(df)
     print(f"  {year} : {len(df)} lignes")
+    return df
+
+
+with ThreadPoolExecutor(max_workers=4) as executor:
+    futures = {executor.submit(_telecharger_annee, year): year for year in YEARS}
+    frames = [f.result() for f in as_completed(futures)]
 
 dvf = pd.concat(frames, ignore_index=True)
 

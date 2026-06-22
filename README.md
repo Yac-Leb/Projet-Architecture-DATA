@@ -67,8 +67,10 @@ Sources open data (DVF, INSEE, IDFM, Open Data Paris…)
 A faire au premier lancement, et après toute modification de `requirements.txt` ou du `Dockerfile` :
 
 ```bash
-docker compose build python_app
+docker compose build
 ```
+
+> En cas d'erreur `No module named …`, forcer la reconstruction complète : `docker compose build --no-cache`
 
 ### 2. Démarrer tous les services
 
