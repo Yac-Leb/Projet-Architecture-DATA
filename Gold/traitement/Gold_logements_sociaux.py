@@ -22,10 +22,23 @@ res = (
         nb_programmes=("nb_logmt_total", "size"),
     )
     .reset_index()
+)
+
+# Grille complète arrondissements (1-20) × années : une année sans opération
+# n'apparaît pas dans la source → on la force à 0 (et non "donnée manquante").
+annees = range(int(res["annee"].min()), int(res["annee"].max()) + 1)
+grille = pd.MultiIndex.from_product(
+    [range(1, 21), annees], names=["code_arrondissement", "annee"]
+)
+res = (
+    res.set_index(["code_arrondissement", "annee"])
+    .reindex(grille, fill_value=0)
+    .reset_index()
     .sort_values(["code_arrondissement", "annee"])
 )
 
 # Cumul des logements sociaux livrés par arrondissement au fil des années
+# (se reporte correctement : les années à 0 n'ajoutent rien au cumul).
 res["cumul_logements"] = (
     res.groupby("code_arrondissement")["nb_logements_sociaux"].cumsum()
 )

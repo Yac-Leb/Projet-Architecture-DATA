@@ -3,6 +3,7 @@ arrondissement et affectation point -> arrondissement (point-in-polygon).
 """
 import sys
 import os
+import math
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../Stockage/traitement"))
 
 import pandas as pd
@@ -115,3 +116,76 @@ def comptage_par_arrondissement(df, lon_col, lat_col, polygones, nom_colonne):
     df = df.dropna(subset=["code_arrondissement"])
     df["code_arrondissement"] = df["code_arrondissement"].astype(int)
     return df.groupby("code_arrondissement").size().reset_index(name=nom_colonne)
+
+
+# ----- Couverture d'accessibilité (% de surface proche d'un point) -----
+
+_M_PAR_DEG_LAT = 111320.0  # mètres par degré de latitude (quasi constant)
+
+
+def couverture_par_arrondissement(points, polygones, rayon_m=300.0, pas_m=100.0,
+                                  nom_colonne="couverture_pct"):
+    """Part de la surface de chaque arrondissement située à moins de `rayon_m`
+    d'au moins un point (ex. arrêt de transport).
+
+    Méthode sans dépendance géo : on échantillonne l'intérieur de chaque
+    arrondissement par une grille régulière de pas `pas_m`, puis on compte la
+    proportion de points de grille proches d'un arrêt (distance euclidienne
+    locale en mètres). Norme d'accessibilité piétonne classique : 300 m.
+
+    `points` : itérable de (lon, lat). Renvoie un DataFrame
+    [code_arrondissement, nom_colonne] (pourcentage arrondi à 0.1).
+    """
+    pts = [(float(lo), float(la)) for lo, la in points
+           if lo is not None and la is not None and not pd.isna(lo) and not pd.isna(la)]
+
+    # Regrouper les anneaux par arrondissement (un MultiPolygon = plusieurs entrées)
+    par_code = {}
+    for poly in polygones:
+        par_code.setdefault(poly["code"], []).append(poly)
+
+    r2 = rayon_m * rayon_m
+    lignes = []
+
+    for code, polys in par_code.items():
+        minx = min(p["bbox"][0] for p in polys)
+        miny = min(p["bbox"][1] for p in polys)
+        maxx = max(p["bbox"][2] for p in polys)
+        maxy = max(p["bbox"][3] for p in polys)
+
+        lat_moy = (miny + maxy) / 2
+        m_par_deg_lon = _M_PAR_DEG_LAT * math.cos(math.radians(lat_moy))
+        pas_lat = pas_m / _M_PAR_DEG_LAT
+        pas_lon = pas_m / m_par_deg_lon
+        marge_lat = rayon_m / _M_PAR_DEG_LAT
+        marge_lon = rayon_m / m_par_deg_lon
+
+        # Arrêts pertinents : bbox élargie du rayon (inclut les arrêts voisins
+        # juste de l'autre côté de la frontière, qui desservent quand même).
+        proches = [
+            (lo, la) for lo, la in pts
+            if minx - marge_lon <= lo <= maxx + marge_lon
+            and miny - marge_lat <= la <= maxy + marge_lat
+        ]
+
+        total = couverts = 0
+        lat = miny
+        while lat <= maxy:
+            m_lon_pt = _M_PAR_DEG_LAT * math.cos(math.radians(lat))
+            lon = minx
+            while lon <= maxx:
+                if any(_point_in_ring(lon, lat, p["ring"]) for p in polys):
+                    total += 1
+                    for slo, sla in proches:
+                        dx = (slo - lon) * m_lon_pt
+                        dy = (sla - lat) * _M_PAR_DEG_LAT
+                        if dx * dx + dy * dy <= r2:
+                            couverts += 1
+                            break
+                lon += pas_lon
+            lat += pas_lat
+
+        pct = round(100.0 * couverts / total, 1) if total else 0.0
+        lignes.append({"code_arrondissement": code, nom_colonne: pct})
+
+    return pd.DataFrame(lignes)

@@ -1,5 +1,6 @@
+import requests
 import pandas as pd
-from db_connection import get_postgres_engine, create_bronze_schema
+from db_connection import get_postgres_engine, create_bronze_schema, get_mongo_client
 
 sources = {
     "fontaines_raw": (
@@ -42,3 +43,17 @@ for table_name, url in sources.items():
     print(f"  Table bronze.{table_name} créée avec {len(df)} lignes.")
 
 print("Données fraîcheur urbaine chargées.")
+
+# GeoJSON des espaces verts frais (polygones) → MongoDB bronze_espaces_verts_geo
+print("Téléchargement GeoJSON espaces verts frais...")
+url_geo = (
+    "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/"
+    "ilots-de-fraicheur-espaces-verts-frais/exports/geojson"
+)
+geo = requests.get(url_geo, timeout=30).json()
+client = get_mongo_client()
+db = client["urban_db"]
+db["bronze_espaces_verts_geo"].drop()
+db["bronze_espaces_verts_geo"].insert_one(geo)
+client.close()
+print(f"  MongoDB bronze_espaces_verts_geo : {len(geo.get('features', []))} features.")

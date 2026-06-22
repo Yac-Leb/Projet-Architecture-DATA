@@ -7,7 +7,7 @@ from db_connection import get_postgres_engine, create_bronze_schema
 url = "https://www.insee.fr/fr/statistiques/fichier/6036907/indic-struct-distrib-revenu-2019-COMMUNES_csv.zip"
 
 print("Téléchargement revenus INSEE 2019...")
-response = requests.get(url, timeout=120)
+response = requests.get(url, timeout=300)
 response.raise_for_status()
 
 with zipfile.ZipFile(io.BytesIO(response.content)) as z:

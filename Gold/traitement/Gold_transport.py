@@ -1,6 +1,13 @@
-"""Indicateur composite B : accessibilité transports — nombre d'arrêts par
-arrondissement et par mode (métro, bus, tram, RER...). Arrondissement affecté
-par point-in-polygon car le jeu IDFM ne donne que la commune "Paris".
+"""Indicateur composite B : accessibilité transports.
+
+Deux mesures par arrondissement :
+- nombre d'arrêts par mode (métro, bus, tram, RER...) + total ;
+- **couverture piétonne** : % de la surface de l'arrondissement situé à moins
+  de 300 m d'un arrêt (norme d'accessibilité urbaine) — indicateur principal,
+  insensible à la taille de l'arrondissement contrairement au comptage brut.
+
+Arrondissement affecté par point-in-polygon car le jeu IDFM ne donne que la
+commune "Paris".
 """
 import gold_utils as g
 import pandas as pd
@@ -35,5 +42,15 @@ res = res.rename(columns={c: f"nb_{str(c).lower()}" for c in mode_cols})
 nb_cols = [f"nb_{str(c).lower()}" for c in mode_cols]
 res[nb_cols] = res[nb_cols].astype(int)
 res["nb_total_arrets"] = res[nb_cols].sum(axis=1)
+
+# Couverture piétonne : % de surface à moins de 300 m d'un arrêt physique.
+# Dédoublonnage par position (un même arrêt porte plusieurs lignes/modes).
+arrets = df.drop_duplicates(subset=["stop_lon", "stop_lat"])
+cov = g.couverture_par_arrondissement(
+    zip(arrets["stop_lon"], arrets["stop_lat"]),
+    polygones, rayon_m=300.0, pas_m=100.0, nom_colonne="couverture_300m_pct",
+)
+res = res.merge(cov, on="code_arrondissement", how="left")
+res["couverture_300m_pct"] = res["couverture_300m_pct"].fillna(0.0)
 
 g.load_gold(res, engine, "transport")

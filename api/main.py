@@ -80,6 +80,21 @@ def liste_indicateurs():
     return INDICATEURS
 
 
+@app.get("/dashboard", tags=["Général"])
+def dashboard():
+    """Toutes les tables d'indicateurs pré-groupées par code_arrondissement."""
+    resultat = {}
+    for table in INDICATEURS:
+        df = pd.read_sql(f"SELECT * FROM gold.{table}", engine)
+        df = df.replace([np.inf, -np.inf], np.nan).astype(object).where(pd.notnull(df), None)
+        groupe = {}
+        for ligne in df.to_dict(orient="records"):
+            code = ligne["code_arrondissement"]
+            groupe.setdefault(code, []).append(ligne)
+        resultat[table] = groupe
+    return resultat
+
+
 @app.get("/indicateurs/{nom}", tags=["Indicateurs"])
 def indicateur(
     nom: str,
@@ -142,6 +157,20 @@ def transport_points(
     df = df.replace([np.inf, -np.inf], np.nan)
     df = df.astype(object).where(pd.notnull(df), None)
     return df.to_dict(orient="records")
+
+
+@app.get("/espaces_verts_geo", tags=["Géographie"])
+def espaces_verts_geo():
+    """GeoJSON des espaces verts frais (polygones Silver depuis MongoDB)."""
+    client = get_mongo_client()
+    doc = client["urban_db"]["espaces_verts_geo"].find_one({}, {"_id": 0})
+    client.close()
+    if doc is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Données espaces verts non disponibles. Relancer Silver.",
+        )
+    return doc
 
 
 @app.get("/arrondissements", tags=["Géographie"])
