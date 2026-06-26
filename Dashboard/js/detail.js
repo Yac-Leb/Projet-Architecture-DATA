@@ -68,7 +68,7 @@ export function tooltipHTML(code) {
         </span>`;
     const part     = ligneAnnee(etat.DATA.logements_sociaux_part[code], etat.anneeActive)?.part_logements_sociaux_pct;
     const fraicheur = premier(etat.DATA.fraicheur[code], "nb_total_fraicheur");
-    const couverture = premier(etat.DATA.transport[code], "couverture_300m_pct");
+    const couverture = etat.couvertureMode?.[code] ?? premier(etat.DATA.transport[code], "couverture_300m_pct");
     const marches   = premier(etat.DATA.marches[code], "nb_marches");
 
     return `
@@ -142,7 +142,9 @@ export function majDetail() {
     const tension    = premier(etat.DATA.tension[code], "rendement_locatif_pct");
     const fraicheur  = premier(etat.DATA.fraicheur[code], "nb_total_fraicheur");
     const arrets     = premier(etat.DATA.transport[code], "nb_total_arrets");
-    const couverture = premier(etat.DATA.transport[code], "couverture_300m_pct");
+    // Couverture mode-aware : suit le filtre de mode de la carte (etat.couvertureMode), sinon Gold tous modes
+    const couvertureFn = (c) => etat.couvertureMode?.[c] ?? premier(etat.DATA.transport[c], "couverture_300m_pct");
+    const couverture = couvertureFn(code);
     const ligneLog   = ligneAnnee(etat.DATA.logements_sociaux[code], etat.anneeActive);
     const logFinances = ligneLog?.nb_logements_sociaux ?? null;
     const logCumul    = ligneLog?.cumul_logements ?? null;
@@ -215,7 +217,7 @@ export function majDetail() {
         "Couverture transport",
         `<span class="kpi-value">${fmt1(couverture)}</span><span class="kpi-unit">% à moins de 300 m</span>`,
         `<span class="kpi-ctx">
-            ${ordinal(rang(code, (c) => premier(etat.DATA.transport[c], "couverture_300m_pct")))}/20 ·
+            ${ordinal(rang(code, couvertureFn))}/20 ·
             ${fmt(arrets)} arrêts
         </span>`
     );

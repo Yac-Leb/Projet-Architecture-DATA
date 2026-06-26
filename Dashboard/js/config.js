@@ -73,6 +73,7 @@ export const etat = {
     indicateurCourant: "prix_m2",
     arrActif:         1,
     anneeActive:      null,
+    anneeComparaison: null,
     annees:           [],
     paliers:          [],
     DATA:             {},

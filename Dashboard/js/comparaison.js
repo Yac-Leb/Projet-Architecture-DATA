@@ -6,11 +6,12 @@ import { premier, ligneAnnee, anneeMax, nomArr, fmt, fmt1 } from "./utils.js";
 export function majComparaison() {
     const codeA = Number(document.getElementById("select-a").value);
     const codeB = Number(document.getElementById("select-b").value);
+    const an    = etat.anneeComparaison ?? anneeMax(codeA);
 
     const indicateurs = [
-        ["Prix médian €/m²",        (c) => ligneAnnee(etat.DATA.prix_m2[c], anneeMax(c))?.prix_m2_median],
-        ["Évolution %",             (c) => ligneAnnee(etat.DATA.prix_m2[c], anneeMax(c))?.evolution_pct],
-        ["Part logements sociaux %",(c) => ligneAnnee(etat.DATA.logements_sociaux_part[c], anneeMax(c))?.part_logements_sociaux_pct],
+        [`Prix médian €/m² (${an})`,        (c) => ligneAnnee(etat.DATA.prix_m2[c], an)?.prix_m2_median],
+        [`Évolution % (${an})`,             (c) => ligneAnnee(etat.DATA.prix_m2[c], an)?.evolution_pct],
+        [`Part logements sociaux % (${an})`,(c) => ligneAnnee(etat.DATA.logements_sociaux_part[c], an)?.part_logements_sociaux_pct],
         ["Accessibilité m²/an",     (c) => premier(etat.DATA.accessibilite[c], "m2_par_revenu_annuel")],
         ["Fraîcheur (total)",       (c) => premier(etat.DATA.fraicheur[c], "nb_total_fraicheur")],
         ["Couverture transport <300 m %", (c) => premier(etat.DATA.transport[c], "couverture_300m_pct")],
@@ -82,7 +83,7 @@ export function majComparaison() {
         premier(etat.DATA.fraicheur[code], "nb_total_fraicheur") || 0,
         premier(etat.DATA.transport[code], "couverture_300m_pct") || 0,
         premier(etat.DATA.marches[code], "nb_marches") || 0,
-        ligneAnnee(etat.DATA.logements_sociaux_part[code], anneeMax(code))?.part_logements_sociaux_pct || 0,
+        ligneAnnee(etat.DATA.logements_sociaux_part[code], an)?.part_logements_sociaux_pct || 0,
     ];
 
     if (etat.chartComposites) etat.chartComposites.destroy();

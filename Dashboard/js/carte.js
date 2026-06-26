@@ -168,13 +168,21 @@ export function rafraichirCarte() {
 
 function paliersHTML() {
     const rampe = rampeActive();
+
+    // Nombre de décimales selon l'écart minimal entre seuils consécutifs
+    let minGap = Infinity;
+    for (let i = 1; i < etat.paliers.length; i++)
+        minGap = Math.min(minGap, etat.paliers[i] - etat.paliers[i - 1]);
+    const dec = minGap < 1 ? 1 : 0;
+    const fmt = (v) => parseFloat(v.toFixed(dec)).toLocaleString("fr-FR");
+
     let html = "";
     let bas = -Infinity;
     for (let i = 0; i < rampe.length; i++) {
         const haut = i < etat.paliers.length ? etat.paliers[i] : Infinity;
         const etiq = haut === Infinity
-            ? `> ${Math.round(etat.paliers[etat.paliers.length - 1]).toLocaleString("fr-FR")}`
-            : `${bas === -Infinity ? "≤" : Math.round(bas).toLocaleString("fr-FR") + "–"} ${Math.round(haut).toLocaleString("fr-FR")}`;
+            ? `> ${fmt(etat.paliers[etat.paliers.length - 1])}`
+            : `${bas === -Infinity ? "≤" : fmt(bas) + "–"} ${fmt(haut)}`;
         html += `<div class="row" style="display:flex;align-items:center;gap:7px;margin:2px 0">
                      <span style="width:24px;height:11px;border-radius:3px;background:${rampe[i]}"></span>
                      ${etiq}

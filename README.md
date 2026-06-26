@@ -67,8 +67,10 @@ Sources open data (DVF, INSEE, IDFM, Open Data Paris…)
 A faire au premier lancement, et après toute modification de `requirements.txt` ou du `Dockerfile` :
 
 ```bash
-docker compose build python_app
+docker compose build
 ```
+
+> En cas d'erreur `No module named …`, forcer la reconstruction complète : `docker compose build --no-cache`
 
 ### 2. Démarrer tous les services
 
@@ -95,7 +97,9 @@ docker exec -it python_app python /app/Gold/main.py
 
 > Chaque orchestrateur affiche les scripts exécutés et signale ceux qui échouent.
 
-> **Attention :** les bases PostgreSQL et MongoDB n'ont pas de volume persistant. Les données sont perdues si les conteneurs sont recréés (redémarrage Docker Desktop, `docker compose down`). Il faut relancer les trois pipelines après chaque recréation.
+> **Ingestion planifiée :** un service **Ofelia** (`scheduler` dans `docker-compose.yml`) relance automatiquement le pipeline complet Bronze→Silver→Gold chaque jour à 11h (cron `0 11 * * *`), sans intervention manuelle.
+
+> **Persistance :** PostgreSQL et MongoDB utilisent des **volumes Docker nommés** (`postgres_data`, `mongo_data`). Les données **survivent** à un `docker compose down` ou à un redémarrage de Docker — inutile de relancer les pipelines à chaque fois. Pour repartir de zéro (et tout réimporter), utiliser `docker compose down -v` qui supprime aussi les volumes.
 
 ### 4. Ouvrir le dashboard
 
@@ -190,6 +194,9 @@ Un simple **F5** suffit après modification des fichiers JS/CSS : nginx est conf
 
 **Vue Comparaison**
 - Deux arrondissements côte à côte : tableau de tous les indicateurs + graphique d'évolution du prix (Line) + graphique des indicateurs composites (Bar).
+- **Sélecteur d'année** dédié (indépendant du curseur de la carte) : prix médian, évolution et part de logements sociaux du tableau (et du graphique composite) sont recalculés sur l'année choisie.
+
+> La **couverture transport du panneau de détail suit aussi le filtre de mode** : décocher un mode (Métro/Bus…) met à jour à la fois la carte et la fiche de l'arrondissement sélectionné.
 
 ### Architecture front-end
 
@@ -260,7 +267,7 @@ docker compose down        # arrête et supprime les conteneurs
 docker compose down -v     # idem + supprime les volumes
 ```
 
-> Après `docker compose down`, les données en base sont perdues (pas de volume persistant). Relancer les pipelines Bronze → Silver → Gold au prochain démarrage.
+> `docker compose down` **conserve** les données (volumes nommés `postgres_data` / `mongo_data`). Seul `docker compose down -v` les supprime — il faut alors relancer les pipelines Bronze → Silver → Gold.
 
 ---
 

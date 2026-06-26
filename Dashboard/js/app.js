@@ -124,6 +124,16 @@ function initInterface() {
     selA.addEventListener("change", majComparaison);
     selB.addEventListener("change", majComparaison);
 
+    // Sélecteur d'année de la comparaison (indépendant du curseur de la carte)
+    const selAnneeCmp = document.getElementById("select-annee-cmp");
+    for (const an of etat.annees) selAnneeCmp.add(new Option(an, an));
+    etat.anneeComparaison = etat.annees[etat.annees.length - 1];
+    selAnneeCmp.value = etat.anneeComparaison;
+    selAnneeCmp.addEventListener("change", () => {
+        etat.anneeComparaison = Number(selAnneeCmp.value);
+        majComparaison();
+    });
+
     // Onglets
     document.getElementById("tab-carte").addEventListener("click", () => switchVue("carte"));
     document.getElementById("tab-comparaison").addEventListener("click", () => switchVue("comparaison"));

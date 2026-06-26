@@ -3,10 +3,15 @@
 import { etat, API, CAT_COMMERCE, TYPES_FONTAINE, COULEURS_MODE, MODES_LABEL } from "./config.js";
 import { ajouterCurseur, creerPopupPoint, fetchCouche, toGeoJSON, categorieFontaine } from "./utils.js";
 import { rafraichirCarte } from "./carte.js";
+import { recalculerCouvertureTransport } from "./couverture.js";
+import { majDetail } from "./detail.js";
 
-// Si l'indicateur affiché est la couverture transport, la recolorer selon les modes cochés.
-function rafraichirCouvertureSiActive() {
+// Recalcule la couverture selon les modes cochés, recolore la carte (si l'indicateur
+// transport est affiché) et met à jour le panneau détail (qui suit le filtre de mode).
+function rafraichirCouvertureMode() {
+    recalculerCouvertureTransport();
     if (etat.indicateurCourant === "transport") rafraichirCarte();
+    majDetail();
 }
 
 // =====================================================================
@@ -256,7 +261,7 @@ export async function toggleTransport(actif) {
     appliquerFiltreTransport();
     majLegendeTransport();
     legende.classList.remove("hidden");
-    rafraichirCouvertureSiActive();
+    rafraichirCouvertureMode();
 }
 
 function construireTransport() {
@@ -314,7 +319,7 @@ function toggleModeTransport(mode) {
     etat.catVisibleTransport[mode] = !etat.catVisibleTransport[mode];
     appliquerFiltreTransport();
     majLegendeTransport();
-    rafraichirCouvertureSiActive();
+    rafraichirCouvertureMode();
 }
 
 function majLegendeTransport() {
