@@ -3,7 +3,7 @@ from db_connection import get_postgres_engine, create_bronze_schema
 
 url = (
     "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/"
-    "logement-encadrement-des-loyers/exports/csv"
+    "marches-decouverts/exports/csv"
     "?delimiter=%3B&list_separator=%2C&quote_all=false&with_bom=true"
 )
 
@@ -13,13 +13,13 @@ engine = get_postgres_engine()
 create_bronze_schema(engine)
 
 df.to_sql(
-    "loyers_raw",
+    "marches_raw",
     engine,
     schema="bronze",
     if_exists="replace",
     index=False,
-    chunksize=10000,
+    chunksize=5000,
     method="multi",
 )
 
-print(f"Table bronze.loyers_raw créée avec {len(df)} lignes.")
+print(f"Table bronze.marches_raw créée avec {len(df)} lignes.")

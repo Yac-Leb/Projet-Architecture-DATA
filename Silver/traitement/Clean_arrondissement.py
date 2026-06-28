@@ -1,71 +1,30 @@
+import sys
 import os
-import json
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../Stockage/traitement"))
 
-project_root = os.path.dirname(__file__)
+from db_connection import get_mongo_client
 
-input_path = os.path.join(
-    project_root,
-    "..",
-    "..",
-    "Stockage",
-    "Data",
-    "Arrondissements",
-    "arrondissements_paris.geojson"
-)
+client = get_mongo_client()
+db = client["urban_db"]
 
-output_dir = os.path.join(
-    project_root,
-    "..",
-    "Data",
-    "Arrondissements"
-)
+features = list(db["bronze_arrondissements"].find({}, {"_id": 0}))
 
-os.makedirs(output_dir, exist_ok=True)
-
-output_path = os.path.join(
-    output_dir,
-    "arrondissements_clean.geojson"
-)
-
-print("Lecture du GeoJSON Bronze...")
-
-with open(input_path, "r", encoding="utf-8") as file:
-    geojson = json.load(file)
-
-clean_features = []
-
-for feature in geojson["features"]:
-    properties = feature.get("properties", {})
-    geometry = feature.get("geometry")
-
-    if geometry is None:
-        continue
-
-    code_arrondissement = str(properties.get("c_arinsee", "")).strip()
-    nom_arrondissement = properties.get("l_ar", "")
-    numero_arrondissement = properties.get("c_ar", None)
-
-    clean_feature = {
+# Nettoyer : garder geometry + propriétés utiles
+cleaned = []
+for f in features:
+    props = f.get("properties", {})
+    cleaned.append({
         "type": "Feature",
-        "geometry": geometry,
+        "geometry": f.get("geometry"),
         "properties": {
-            "code_arrondissement": code_arrondissement,
-            "nom_arrondissement": nom_arrondissement,
-            "numero_arrondissement": numero_arrondissement
+            "code_arrondissement": props.get("c_ar") or props.get("c_arinsee") or props.get("code"),
+            "nom": props.get("l_ar") or props.get("l_aroff") or props.get("nom"),
+            "superficie_ha": props.get("surface") or props.get("geom_x_explode"),
+            "population": props.get("population"),
         }
-    }
+    })
 
-    clean_features.append(clean_feature)
+db["arrondissements"].delete_many({})
+db["arrondissements"].insert_many(cleaned)
 
-clean_geojson = {
-    "type": "FeatureCollection",
-    "features": clean_features
-}
-
-with open(output_path, "w", encoding="utf-8") as file:
-    json.dump(clean_geojson, file, ensure_ascii=False, indent=2)
-
-print("GeoJSON Silver créé.")
-print("Nombre d'arrondissements :", len(clean_features))
-print("Fichier sauvegardé ici :")
-print(output_path)
+print(f"{len(cleaned)} arrondissements nettoyés dans MongoDB (urban_db.arrondissements).")

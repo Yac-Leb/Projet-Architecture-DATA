@@ -1,5 +1,5 @@
-import os
 import pandas as pd
+from db_connection import get_postgres_engine, create_bronze_schema
 
 url = (
     "https://data.iledefrance.fr/api/explore/v2.1/catalog/datasets/"
@@ -7,24 +7,19 @@ url = (
     "exports/csv?delimiter=%3B&list_separator=%2C&quote_all=false&with_bom=true"
 )
 
-project_root = os.path.dirname(__file__)
-
-output_dir = os.path.join(
-    project_root,
-    "..",
-    "Data",
-    "Population"
-)
-
-os.makedirs(output_dir, exist_ok=True)
-
-output_path = os.path.join(output_dir, "population_arrondissements.csv")
-
 df = pd.read_csv(url, sep=";", dtype=str)
 
-df.to_csv(output_path, index=False, encoding="utf-8")
+engine = get_postgres_engine()
+create_bronze_schema(engine)
 
-print(df.head())
-print(df.shape)
-print("Fichier sauvegardé ici :")
-print(output_path)
+df.to_sql(
+    "population_raw",
+    engine,
+    schema="bronze",
+    if_exists="replace",
+    index=False,
+    chunksize=10000,
+    method="multi",
+)
+
+print(f"Table bronze.population_raw créée avec {len(df)} lignes.")

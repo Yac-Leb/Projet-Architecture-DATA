@@ -1,119 +1,20 @@
-import pandas as pd
+import sys
 import os
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../Stockage/traitement"))
 
-project_root = os.path.dirname(__file__)
+import pandas as pd
+from db_connection import get_postgres_engine, create_silver_schema
 
-input_path = os.path.join(
-    project_root,
-    "..",
-    "..",
-    "Stockage",
-    "Data",
-    "Population",
-    "population_arrondissements.csv"
-)
+engine = get_postgres_engine()
+create_silver_schema(engine)
 
-output_dir = os.path.join(
-    project_root,
-    "..",
-    "Data",
-    "Population"
-)
+df = pd.read_sql("SELECT * FROM bronze.population_raw", engine)
 
-os.makedirs(output_dir, exist_ok=True)
+# Filtrer Paris (codes communes 75101–75120)
+code_col = next((c for c in df.columns if "code" in c.lower() and "commune" in c.lower()), None)
+if code_col:
+    df = df[df[code_col].astype(str).str.startswith("751")]
+    df = df.rename(columns={code_col: "code_arrondissement"})
 
-print("Lecture dataset population Bronze...")
-
-df = pd.read_csv(
-    input_path,
-    sep=",",
-    dtype=str
-)
-
-# ==========================================
-# Garder uniquement Paris
-# ==========================================
-
-df = df[
-    df["com_arm_code"].str.startswith("751", na=False)
-]
-
-# ==========================================
-# Colonnes utiles
-# ==========================================
-
-df = df[[
-    "com_arm_code",
-    "com_arm_name",
-    "com_arm_pop_mun",
-    "geo_year"
-]]
-
-# ==========================================
-# Renommage
-# ==========================================
-
-df = df.rename(columns={
-    "com_arm_code": "code_arrondissement",
-    "com_arm_name": "nom_arrondissement",
-    "com_arm_pop_mun": "population",
-    "geo_year": "annee"
-})
-
-# ==========================================
-# Types numériques
-# ==========================================
-
-df["population"] = pd.to_numeric(
-    df["population"],
-    errors="coerce"
-)
-
-df["annee"] = pd.to_numeric(
-    df["annee"],
-    errors="coerce"
-)
-
-# ==========================================
-# Suppression nulls
-# ==========================================
-
-df = df.dropna(
-    subset=["population", "annee"]
-)
-
-# ==========================================
-# Tri
-# ==========================================
-
-df = df.sort_values(
-    by=["annee", "code_arrondissement"]
-)
-
-# ==========================================
-# Sauvegarde Silver
-# ==========================================
-
-output_path = os.path.join(
-    output_dir,
-    "population_clean.csv"
-)
-
-df.to_csv(
-    output_path,
-    index=False,
-    encoding="utf-8"
-)
-
-# ==========================================
-# Vérification
-# ==========================================
-
-print("\nDataset population Silver créé.")
-
-print(df.head())
-
-print(df.shape)
-
-print("\nFichier sauvegardé ici :")
-print(output_path)
+df.to_sql("population", engine, schema="silver", if_exists="replace", index=False, chunksize=10000, method="multi")
+print(f"silver.population chargée avec {len(df)} lignes.")
